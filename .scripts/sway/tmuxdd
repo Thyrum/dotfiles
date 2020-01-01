@@ -1,0 +1,8 @@
+#!/bin/bash
+
+#tmux
+if tmux ls | grep "tmuxdd"; then
+	tmux attach -t tmuxdd
+else
+	tmux new-session -s tmuxdd
+fi

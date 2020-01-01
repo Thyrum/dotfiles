@@ -1,0 +1,33 @@
+#!/bin/bash
+
+bashscripts="${HOME}/.scripts/tmux"
+
+show_help() {
+    echo 'Usage: muxify [[music],[uni],[pid]] [arguments]';
+}
+
+while [ $# -gt 0 ]; do
+    key="$1"
+    shift
+    case $key in
+        "music"|"Music")
+            source ${bashscripts}/tmuxMusic.sh $@
+            exit 0
+            ;;
+        "uni"|"Uni")
+            if ! source ${bashscripts}/tmuxUni.sh $@ ; then
+                show_help
+                exit 1
+            fi
+            exit 0
+            ;;
+        "pid"|"Pid")
+            source ${bashscripts}/tmuxPid.sh $@
+            exit 0
+            ;;
+        *)
+            show_help
+            exit 0
+            ;;
+    esac
+done

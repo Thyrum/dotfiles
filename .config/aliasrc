@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Uni commands
+alias sshUni="ssh -t -A -X s2120437@sshgw.leidenuniv.nl ssh -X huisuil01"
+alias sshfsUni="sshfs s2120437@sshgw.leidenuniv.nl:/vol/home/s2120437 /mnt/aron/uni -o transform_symlinks"
+alias wgetUni="wget --user=s2120437 --ask-password"
+
+# General settings
+alias vim="nvim"
+alias sp="sudo pacman"
+alias cp="cp -i"		# Confirm overwriting
+alias df="df -h"		# Human readable sizes
+alias free="free -m"	# show sizes in MB
+alias more=less
+
+# Enable color by default
+alias ls="ls --color=auto"
+alias grep="grep --color=auto"
+alias egrep="egrep --color=auto"
+alias fgrep="fgrep --color=auto"
+
+
+# Fun
+alias starwars="telnet towel.blinkenlights.nl"
+
+alias getlinks='ls -A | while read line; do echo "stat $line"; done | bash | sed -n -e "s/^.*File: /File:  /p" -e "s/^.*Links: /Links: /p"'

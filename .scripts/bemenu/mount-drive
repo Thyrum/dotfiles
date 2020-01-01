@@ -1,0 +1,21 @@
+#!/bin/sh
+
+partitions=$(lsblk -o PATH,SIZE,TYPE,MOUNTPOINT | grep "part $" | awk '{print $1" ("$2")"}' | column -t)
+mount_location=$(find /mnt /mnt/$USER -empty -type d -maxdepth 1 2>/dev/null | grep -v -e "^/mnt$" -e "^/mnt/$USER$")
+
+selected_partition=$(echo "$partitions" | bemenu -l 10 --fn mono -p "Mount which drive?" | cut -d ' ' -f1)
+[ -z "$selected_partition" ] && exit
+
+selected_location=$(echo "$mount_location" | bemenu -l 10 --fn mono -p "Mount where?")
+[ -z "$selected_location" ] && exit
+
+# If the given location does not exist, ask if we must create it
+if [ ! -d "$selected_location" ]; then
+	if [ "$(echo -e "Yes\nNo" | bemenu --fn mono -i -p "Directory $selected_location does not exist, create it?")" = "Yes" ]; then
+		sudo mkdir $selected_location
+	else
+		exit
+	fi
+		
+fi
+sudo mount "$selected_partition" "$selected_location"

@@ -1,0 +1,50 @@
+#!/bin/sh
+
+function helper {
+	echo "Usage:
+  media [play-pause, play, pause, next, previous]
+  media volume [up, down, toggle]
+  media brightness [up, down]"
+	exit
+}
+
+function volume {
+	case "$1" in
+		up)
+			amixer sset 'Master' 5%+ >/dev/null;;
+		down)
+			amixer sset 'Master' 5%- >/dev/null;;
+		toggle)
+			amixer sset 'Master' toggle >/dev/null;;
+	esac
+	pgrep i3blocks >/dev/null && pkill -RTMIN+10 i3blocks
+}
+
+function brightness {
+	case "$1" in
+		up)
+			sudo light -A 5;;
+		down)
+			sudo light -U 5;;
+	esac
+}
+
+[ -z "$1" ] && helper
+case "$1" in
+	volume)
+		[ -z "$2" ] && helper
+		volume $2;;
+	brightness)
+		[ -z "$2" ] && helper
+		brightness $2;;
+	play-pause)
+		playerctl play-pause;;
+	pause)
+		playerctl pause;;
+	play)
+		playerctl play;;
+	next)
+		playerctl next;;
+	previous)
+		playerctl previous;;
+esac

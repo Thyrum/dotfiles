@@ -1,0 +1,5 @@
+#!/bin/sh
+[ -z $1 ] && exit
+if [ "$1"=="on" ]; then
+	sudo systemctl start bluetooth
+fi

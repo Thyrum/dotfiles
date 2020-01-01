@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# Get the list of all partitions exect root
+partitions=$(lsblk -o PATH,SIZE,TYPE,MOUNTPOINT | grep "part /." | awk '{print $4" ("$1") ("$2")"}' | column -t)
+
+# Ask which partition we want to unmount
+selected_partition=$(echo "$partitions" | bemenu -p "Unmount which drive?" -l 10 --fn mono | cut -d ' ' -f1)
+
+[ -z "$selected_partition" ] && exit
+
+sudo umount $selected_partition
