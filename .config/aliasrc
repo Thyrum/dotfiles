@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Trash commands
+alias rm=rmtrash
+alias rmdir=rmdirtrash
+# This one is to make sudo use trash as well
+alias sudo="sudo "
+
 # Uni commands
 alias sshUni="ssh -t -A -X s2120437@sshgw.leidenuniv.nl ssh -X huisuil01"
 alias sshfsUni="sshfs s2120437@sshgw.leidenuniv.nl:/vol/home/s2120437 /mnt/aron/uni -o transform_symlinks"
@@ -12,7 +18,6 @@ alias cp="cp -i"		# Confirm overwriting
 alias df="df -h"		# Human readable sizes
 alias free="free -m"	# show sizes in MB
 alias more=less
-alias rm="gio trash"
 
 # Enable color by default
 alias ls="ls --color=auto"

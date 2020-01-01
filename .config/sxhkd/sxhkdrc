@@ -20,11 +20,14 @@ super + Escape
 
 # brightness
 super + {F2,F3}
-	sudo light -{U,A} 5
+	xbacklight {-,+} 2
 
 # sound
-{XF86AudioRaiseVolume,XF86AudioLowerVolume,XF86AudioMuteVolume}
-	amixer sset 'Master' {5%+,5%-,toggle}
+{XF86AudioRaiseVolume,XF86AudioLowerVolume}
+	amixer sset 'Master' 5%{+,-}
+
+XF86AudioMute
+	amixer -D pulse sset 'Master' toggle
 
 # playback
 {XF86AudioPlay,XF86AudioPrev,XF86AudioNext}
