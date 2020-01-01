@@ -12,6 +12,7 @@ alias cp="cp -i"		# Confirm overwriting
 alias df="df -h"		# Human readable sizes
 alias free="free -m"	# show sizes in MB
 alias more=less
+alias rm="gio trash"
 
 # Enable color by default
 alias ls="ls --color=auto"
