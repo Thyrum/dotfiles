@@ -10,6 +10,7 @@ export EDITOR=nvim
 # My directories
 export UNI=$HOME/uni
 export DOTFILES=$HOME/dotfiles
+export XDG_CONFIG_HOME=$HOME/.config
 
 # ~/ Clean-up:
 export ZDOTDIR="$HOME/.config/zsh"
