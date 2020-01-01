@@ -28,3 +28,4 @@ done
 unset i
 
 $HOME/.config/polybar/launch.sh
+feh --randomize --bg-fill $DOTFILES/wallpaper/*

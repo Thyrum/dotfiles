@@ -20,7 +20,7 @@ super + Escape
 
 # brightness
 super + {F2,F3}
-	light -{U,A} 5
+	sudo light -{U,A} 5
 
 # sound
 {XF86AudioRaiseVolume,XF86AudioLowerVolume,XF86AudioMuteVolume}
