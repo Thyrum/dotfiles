@@ -52,10 +52,6 @@ colorscheme ron
 " Set public/private/protected indentation to how i like it
 set cinoptions=g0
 
-" Map the caps lock key to escape
-au VimEnter * silent! !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
-au VimLeave * silent! !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Caps_Lock'
-
 " Leader keys mapping
 let mapleader = ' '
 map <Leader>l :w<CR> :!if [ "%:t:e" = "tex" ]; then pdflatex % && pkill mupdf --signal SIGHUP; fi<CR><CR>
