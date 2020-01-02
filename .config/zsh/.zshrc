@@ -20,6 +20,8 @@ _comp_options+=(globdots)		# Include hidden files.
 
 # vi mode
 bindkey -v
+bindkey -a '^[[3~' delete-char
+bindkey '^[[3~' delete-char
 export KEYTIMEOUT=1
 
 # Use vim keys in tab complete menu:
