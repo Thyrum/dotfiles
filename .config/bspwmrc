@@ -28,5 +28,10 @@ for monitor in $(bspc query -M); do
 done
 unset i
 
+### AUTO LOCK ###
+# after 300 seconds, dim the screen, 5 second later lock
+xset s 300 5
+xss-lock -n /usr/lib/xsecurelock/dimmer -l -- env XSECURELOCK_AUTH_TIMEOUT=5 xsecurelock &
+
 $HOME/.config/polybar/launch.sh
 feh --randomize --bg-fill $DOTFILES/wallpaper/*
