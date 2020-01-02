@@ -4,7 +4,7 @@
 autoload -U colors && colors
 
 source $DOTFILES/.config/git-prompt.sh
-setopt PROMPT_SUBST ; PS1='%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%c %(0?.%{$fg[green]%}✓.%{$fg[red]%}%?)%{$fg[red]%}]%{$reset_color%}$(__git_ps1 " (%s)")\$%b '
+setopt PROMPT_SUBST ; PS1='%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%c %(0?.%{$fg[green]%}✓.%{$fg[red]%}%?)%{$fg[red]%}]$(__git_ps1 " %%{$fg[cyan]%%}(%s)")%{$reset_color%}%(!.#.\$)%b '
 
 # History in cache directory:
 HISTSIZE=10000
