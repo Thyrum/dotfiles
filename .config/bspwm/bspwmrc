@@ -18,6 +18,8 @@ bspc config gapless_monocle      true
 #bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
 
+bspc config external_rules_command $DOTFILES/.config/bspwm/external_rules
+
 #### MONITOR SETUP ####
 i=1
 for monitor in $(bspc query -M); do

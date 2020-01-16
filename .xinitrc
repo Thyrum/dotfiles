@@ -33,4 +33,4 @@ fi
 # switch caps and escape
 setxkbmap -option caps:swapescape
 
-exec bspwm -c $HOME/.config/bspwmrc
+exec bspwm

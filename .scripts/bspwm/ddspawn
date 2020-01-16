@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# Toggle floating dropdown programs or start them if they don't exists
+# $1 is the name of the program
+# name will be dropdown_* for easy settings management
+
+[ -z "$1" ] && exit
+
+if pid=$(xdotool search --name "dropdown_$1"); then
+	let pid=$pid+2
+	echo "Toggling $pid"
+	bspc node $pid --flag hidden --focus
+else
+	echo "Starting $1"
+	$TERMINAL --name="dropdown_$1" $@ -e $1
+fi

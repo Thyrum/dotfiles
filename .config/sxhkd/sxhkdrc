@@ -15,6 +15,8 @@ super + shift + w
 	firefox
 super + w
 	$TERMINAL -e nmtui
+super + alt + {t,c}
+	ddspawn {tmuxdd,bc}
 
 # lock screen
 super + p
@@ -34,7 +36,7 @@ super + {F2,F3}
 
 # sound
 {XF86AudioRaiseVolume,XF86AudioLowerVolume}
-	amixer sset 'Master' 5%{+,-}
+	amixer sset 'Master' 2%{+,-}
 
 XF86AudioMute
 	amixer -D pulse sset 'Master' toggle
