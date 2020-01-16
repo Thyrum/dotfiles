@@ -19,7 +19,7 @@ bspc config gapless_monocle      true
 bspc rule -a Screenkey manage=off
 
 #### MONITOR SETUP ####
-$i=1
+i=1
 for monitor in $(bspc query -M); do
 	bspc monitor $monitor \
 		-n "$i" \
