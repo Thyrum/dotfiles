@@ -1,0 +1,12 @@
+# This is Git's per-user configuration file.
+[user]
+	name = Aron de Jong
+	email = a.de.jong.6@umail.leidenuniv.nl
+[push]
+	default = simple
+[core]
+	editor = vim
+[alias]
+	last = log -1 HEAD
+	graph = log --oneline --graph
+	st = status
