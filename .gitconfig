@@ -6,7 +6,10 @@
 	default = simple
 [core]
 	editor = vim
+	excludesfile = /vol/home/s2120437/.gitignore_global
 [alias]
 	last = log -1 HEAD
 	graph = log --oneline --graph
 	st = status
+	d = diff
+	dc = diff --cached

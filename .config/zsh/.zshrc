@@ -102,3 +102,4 @@ bindkey '^e' edit-command-line
 
 # Load zsh-syntax-highlighting; should be last.
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+source /vol/home/s2120437/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
