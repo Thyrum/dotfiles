@@ -43,7 +43,7 @@ XF86AudioMute
 
 # playback
 {XF86AudioPlay,XF86AudioPrev,XF86AudioNext}
-	playerctl {play-pause,previous,next}
+	mpc {toggle,previous,next}
 
 #
 # bspwm hotkeys
