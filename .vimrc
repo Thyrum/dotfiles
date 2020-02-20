@@ -52,7 +52,20 @@ colorscheme ron
 " Set public/private/protected indentation to how i like it
 set cinoptions=g0
 
+" Replace variables/words
+nnoremap gr gd[{V%:s/<C-R>///gc<Left><Left><Left>
+nnoremap gR gD:%s/<C-R>///gc<Left><Left><Left>
+
+" Make the current word uppercase
+inoremap <c-u> <esc>viwUea
+" Surround the current word in quotes
+nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
+
 " Leader keys mapping
 let mapleader = ' '
-map <Leader>l :w<CR> :!if [ "%:t:e" = "tex" ]; then pdflatex % && pkill mupdf --signal SIGHUP; fi<CR><CR>
-map <Leader>c :w<CR> :!if [ "%:t:e" = "md" ]; then pandoc % > %.html; fi<CR>
+map <leader>l :w<CR> :!if [ "%:t:e" = "tex" ]; then pdflatex % && pkill mupdf --signal SIGHUP; fi<CR><CR>
+map <leader>c :w<CR> :!if [ "%:t:e" = "md" ]; then pandoc % > %.html; fi<CR>
+
+" Edit/source the vimrc
+nnoremap <leader>ev :split ~/.vimrc<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>

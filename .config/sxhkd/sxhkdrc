@@ -15,8 +15,8 @@ super + shift + w
 	firefox
 super + w
 	$TERMINAL -e nmtui
-super + alt + {t,c}
-	ddspawn {tmuxdd,bc}
+super + alt + {t,c,m}
+	ddspawn {tmuxdd,bc,ncmpcpp}
 
 # lock screen
 super + p
