@@ -31,7 +31,6 @@ map <F9> :YcmCompleter FixIt<CR>
 let g:ycm_always_populate_location_list = 1
 
 
-
 " Lightline settings
 if $TERM !=? 'linux'
   set laststatus=2
@@ -48,6 +47,10 @@ set cindent
 set tabstop=4 softtabstop=0 shiftwidth=4 smarttab
 set hlsearch " Highlight all search querys
 colorscheme ron
+" Hightlight everything after column 80
+let &colorcolumn=join(range(81,999),",")
+highlight ColorColumn ctermbg=235 guibg=#2c2d27
+
 
 " Set public/private/protected indentation to how i like it
 set cinoptions=g0
