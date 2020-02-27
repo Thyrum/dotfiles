@@ -10,10 +10,14 @@ endif
 " Vim-plug plugin list
 call plug#begin('~/.vim/plugged')
 
+" FZF
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+
 Plug 'itchyny/lightline.vim'
 Plug 'Valloric/YouCompleteMe'
+
+" Nerdtree
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
