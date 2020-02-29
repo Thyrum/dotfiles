@@ -30,3 +30,5 @@ alias fgrep="fgrep --color=auto"
 alias starwars="telnet towel.blinkenlights.nl"
 
 alias getlinks='ls -A | while read line; do echo "stat $line"; done | bash | sed -n -e "s/^.*File: /File:  /p" -e "s/^.*Links: /Links: /p"'
+
+alias RoboCom="wine '$HOME/.wine/drive_c/Program Files (x86)/RoboCom Workshop/RoboCom.exe'"
