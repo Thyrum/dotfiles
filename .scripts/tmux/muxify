@@ -1,6 +1,6 @@
 #!/bin/bash
 
-bashscripts="${HOME}/.scripts/tmux"
+bashscripts="${DOTFILES}/.scripts/tmux"
 
 show_help() {
     echo 'Usage: muxify [[music],[uni],[pid]] [arguments]';
