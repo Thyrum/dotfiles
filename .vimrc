@@ -7,6 +7,9 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+" Enable filetype specific plugins
+filetype plugin indent on
+
 " Vim-plug plugin list
 call plug#begin('~/.vim/plugged')
 
@@ -31,10 +34,11 @@ let g:lightline = {
 
 " YouCompleteMe settings
 let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+let g:ycm_confirm_extra_conf = 0
 let g:ycm_keep_logfiles = 1
 let g:ycm_log_level = 'info'
-map <F9> :YcmCompleter FixIt<CR>
 let g:ycm_always_populate_location_list = 1
+nnoremap <F9> :YcmCompleter FixIt<CR>
 
 
 " Lightline settings
@@ -58,12 +62,15 @@ set hlsearch " Highlight all search querys
 set scrolloff=3
 colorscheme ron
 " Hightlight everything after column 80
-let &colorcolumn=join(range(81,999),",")
+let &colorcolumn="80,".join(range(120,999),",")
 highlight ColorColumn ctermbg=235 guibg=#2c2d27
 
 
 " Set public/private/protected indentation to how i like it
 set cinoptions=g0
+
+" Disable relative numbmers, usefull for slow internet connections
+nnoremap <leader>r :set relativenumber!<CR>
 
 " Replace variables/words
 nnoremap gr gd[{V%:s/<C-R>///gc<Left><Left><Left>
@@ -74,9 +81,9 @@ inoremap <c-u> <esc>viwUea
 " Surround the current word in quotes
 nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
 
-" Leader keys mapping
-map <leader>l :w<CR> :!if [ "%:t:e" = "tex" ]; then pdflatex % && pkill mupdf --signal SIGHUP; fi<CR><CR>
-map <leader>c :w<CR> :!if [ "%:t:e" = "md" ]; then pandoc % > %.html; fi<CR>
+" Compile .tex files
+nnoremap <leader>l :w<CR> :!if [ "%:t:e" = "tex" ]; then pdflatex % && pkill mupdf --signal SIGHUP; fi<CR><CR>
+nnoremap <leader>c :w<CR> :!if [ "%:t:e" = "md" ]; then pandoc % > %.html; fi<CR>
 
 " Edit/source the vimrc
 nnoremap <leader>ev :split ~/.vimrc<cr>
