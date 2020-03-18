@@ -1,0 +1,208 @@
+#---Basic Definitions---# #
+#for_window [class="^.*"] border pixel 2
+hide_edge_borders none
+default_floating_border pixel 1
+default_border pixel 1
+mouse_warping none
+
+gaps inner 15
+gaps outer 15
+set $term --no-startup-id termite
+set $mod Mod4
+set $BROWSER firefox
+
+# #---Dropdown Windows---# #
+# General dropdown window traits. The order can matter
+#for_window [app_id="dropdown_*"] floating enable; move scratchpad; sticky enable; scratchpad show;
+for_window [app_id="dropdown_*"] floating enable
+for_window [app_id="dropdown_*"] sticky enable
+for_window [app_id="dropdown_tmuxdd"] resize set 625 450
+for_window [app_id="dropdown_dropdowncalc"] resize set 800 300
+for_window [app_id="dropdown_tmuxdd"] border pixel 3
+for_window [app_id="dropdown_dropdowncalc"] border pixel 2
+for_window [app_id="dropdown_*"] move position center
+
+# #---Start External Scripts---# #
+# Set the background
+#exec --no-startup-id feh --randomize --bg-fill ~/Pictures/wallpaper/*
+output "*" background "$DOTFILES/wallpaper/$(ls $DOTFILES/wallpaper/ | shuf -n 1)" fill
+# Start compton
+#exec --no-startup-id compton
+# Set keyboard repeat delay and speed
+#exec --no-startup-id xset r rate 185 50
+# Set the screen layout correctly
+#exec --no-startup-id [ $(xrandr | grep " connected" | wc -l) = "2" ] && source ~/.screenlayout/dual.sh
+# Start notification deamon
+exec mako
+
+bar {
+		font pango:mono, Icons 10
+        status_command i3blocks
+		position top
+		mode dock
+		modifier none
+}
+
+# #---Basic Bindings---# #
+bindsym $mod+Return 		exec $term
+#bindsym $mod+Shift+Return	exec urxvt; floating enable; move position center
+
+bindsym $mod+Shift+space 	floating toggle
+# Change focus between tiling / floating windows
+bindsym $mod+space 			focus mode_toggle
+
+bindsym $mod+Escape 		workspace prev
+bindsym $mod+Shift+e 		exec --no-startup-id prompt 'Are you sure?' 'swaymsg exit'
+
+# #---Letter Key Bindings---# #
+bindsym $mod+q 				[con_id="__focused__"] kill
+#bindsym $mod+q 			[con_id="__focused__" app_id="^(?!dropdown_).*$"] kill
+bindsym $mod+Shift+q 		[con_id="__focused__"] exec --no-startup-id kill -9 `xdotool getwindowfocus getwindowpid`
+#bindsym $mod+Shift+q 		[con_id="__focused__" app_id="^(?!dropdown_).*$"] exec --no-startup-id kill -9 `xdotool getwindowfocus getwindowpid`
+
+#bindsym $mod+u				exec --no-startup-id startup="muxify uni $(find $UNI/ -maxdepth 3 -name .git | sed -e \"s:$UNI/::g\" -e \"s:/.git::g\" | bemenu)"; exec urxvt;
+bindsym $mod+u				exec bemenuunicode
+
+bindsym $mod+w 				exec $term -e nmtui
+bindsym $mod+Shift+w 		exec --no-startup-id $BROWSER
+
+bindsym $mod+t 				split toggle
+bindsym $mod+Shift+t		exec --no-startup-id ddspawn tmuxdd
+bindsym $mod+m				exec --no-startup-id ddspawn cmusdd
+
+bindsym $mod+Shift+u 		resize shrink width 10 px or 10 ppt
+bindsym $mod+Shift+i 		resize grow height 10 px or 10 ppt
+bindsym $mod+Shift+o 		resize shrink height 10 px or 10 ppt
+bindsym $mod+Shift+p 		resize grow width 10 px or 10 ppt
+
+bindsym $mod+s 				gaps inner all set 15
+bindsym $mod+Shift+s		gaps inner all set 0
+
+bindsym $mod+d 				exec --no-startup-id j4-dmenu-desktop --dmenu='bemenu -i' --term='$TERMINAL'
+
+bindsym $mod+f 				fullscreen toggle
+bindsym $mod+g 				fullscreen toggle global
+
+bindsym $mod+h 				focus left
+bindsym $mod+Shift+h		move left 30
+
+bindsym $mod+j 				focus down
+bindsym $mod+Shift+j		move down 30
+
+bindsym $mod+k 				focus up
+bindsym $mod+Shift+k		move up 30
+
+bindsym $mod+l 				focus right
+bindsym $mod+Shift+l		move right 30
+
+bindsym $mod+z 				gaps outer all set 15
+bindsym $mod+Shift+z 		gaps outer all set 0
+
+bindsym $mod+b 				bar mode toggle
+bindsym $mod+Shift+b 		floating toggle; sticky toggle; exec --no-startup-id hover left
+
+bindsym $mod+Shift+n 		floating toggle; sticky toggle; exec --no-startup-id hover right
+
+bindsym $mod+Shift+c		move position center;
+
+bindsym $mod+p 				exec --no-startup-id pause
+
+
+bindsym $mod+Shift+r		reload
+
+# #---Workspace Bindings---# #
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# switch to workspace
+bindsym $mod+1		workspace $ws1
+bindsym $mod+2		workspace $ws2
+bindsym $mod+3		workspace $ws3
+bindsym $mod+4		workspace $ws4
+bindsym $mod+5		workspace $ws5
+bindsym $mod+6		workspace $ws6
+bindsym $mod+7		workspace $ws7
+bindsym $mod+8		workspace $ws8
+bindsym $mod+9		workspace $ws9
+bindsym $mod+0		workspace $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1	move container to workspace $ws1
+bindsym $mod+Shift+2	move container to workspace $ws2
+bindsym $mod+Shift+3	move container to workspace $ws3
+bindsym $mod+Shift+4	move container to workspace $ws4
+bindsym $mod+Shift+5	move container to workspace $ws5
+bindsym $mod+Shift+6	move container to workspace $ws6
+bindsym $mod+Shift+7	move container to workspace $ws7
+bindsym $mod+Shift+8	move container to workspace $ws8
+bindsym $mod+Shift+9	move container to workspace $ws9
+bindsym $mod+Shift+0	move container to workspace $ws10
+
+# #---Arrow Keys---# #
+bindsym $mod+Left			focus left
+bindsym $mod+Down			focus down
+bindsym $mod+Up				focus up
+bindsym $mod+Right 			focus right
+bindsym $mod+Shift+Left		move left
+bindsym $mod+Shift+Down		move down
+bindsym $mod+Shift+Up		move up
+bindsym $mod+Shift+Right	move right
+
+# #---Media Keys---# #
+# Volume keys
+bindsym XF86AudioRaiseVolume	exec --no-startup-id media volume up
+bindsym XF86AudioLowerVolume 	exec --no-startup-id media volume down
+bindsym XF86AudioMute 			exec --no-startup-id media volume toggle
+
+# Brightness keys
+#bindsym XF86BrightnessUp 	exec --no-startup-id light -A 5
+#bindsym XF86BrightnessDown 	exec --no-startup-id light -U 5
+bindsym $mod+F3 			exec --no-startup-id media brightness up
+bindsym $mod+F2 			exec --no-startup-id media brightness down
+
+# Music control
+bindsym XF86AudioNext		exec --no-startup-id media next
+bindsym XF86AudioPrev		exec --no-startup-id media previous
+bindsym XF86AudioPlay		exec --no-startup-id media play-pause
+bindsym XF86AUdioPause		exec --no-startup-id media play-pause
+
+# #---Function Keys---# #
+bindsym $mod+F4		exec mount-drive
+bindsym $mod+F5		exec umount-drive
+
+# #---Input devices---# #
+input * {
+	xkb_options caps:swapescape
+	repeat_delay 300
+	repeat_rate 40
+}
+input "2:14:ETPS/2_Elantech_Touchpad" {
+	tap enabled
+	natural_scroll enabled
+}
+#setxkbmap -option caps:swapescape
+
+# #---Idle setup---# #
+#exec swayidle -w \
+#timeout 10 'swaylock' \
+#timeout 10 'swaymsg "output * dpms off"' \
+#resume 'swaymsg "output * dpms on"' \
+#before-sleep 'swaylock'
+#exec swayidle -w \
+#          timeout 10 'notify-send "Timeout 1"' \
+#		  timeout 10 'notify-send "Timeout 2"' \
+#               resume 'notify-send "Resume"' \
+#before-sleep 'notify-send "Before-sleep"'
+
+#exec swayidle -w \
+#		  timeout 10 'swaymsg "output * dpms off"' \
+#               resume 'swaymsg "output * dpms on"' \
+#before-sleep 'swaymsg "output * dpms off"'
