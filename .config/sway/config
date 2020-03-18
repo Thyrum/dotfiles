@@ -165,6 +165,7 @@ bindsym XF86AUdioPause		exec --no-startup-id media play-pause
 # #---Function Keys---# #
 bindsym $mod+F4		exec mount-drive
 bindsym $mod+F5		exec umount-drive
+bindsym Pause		exec backlight_toggle
 
 # #---Input devices---# #
 input * {

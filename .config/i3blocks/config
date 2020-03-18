@@ -84,19 +84,18 @@ label=📶
 interval=10
 separator=false
 
-[bandwidth]
-#INTERFACE=eth0
-interval=5
+#[bandwidth]
+#INTERFACE=wlo1
+#interval=5
 
 # CPU usage
 #
 # The script may be called with -w and -c switches to specify thresholds,
 # see the script for details.
 [cpu_usage]
-label=CPU
+label=CPU 
 interval=10
 min_width=CPU 100.00%
-#separator=false
 
 [load_average]
 label=LOAD
