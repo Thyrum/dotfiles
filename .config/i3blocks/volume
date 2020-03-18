@@ -1,0 +1,27 @@
+#!/bin/bash
+
+[[ -z "${BLOCK_BUTTON}" ]] || amixer sset Master toggle >/dev/null
+
+volume=$(amixer get Master | tail -1 | sed -e 's/\].*//' -e 's/.*\[//')
+mute=$(amixer get Master | tail -1 | sed -e 's/.*\[//' -e 's/\]//')
+
+if [ "$mute" == "off" ]; then
+	icon=🔇
+elif [ "${volume::-1}" -gt "75" ]; then
+	icon=🔊
+elif [ "${volume::-1}" -gt "25" ]; then
+	icon=🔉
+else
+	icon=🔈
+fi
+
+# Full and short text respectively
+echo "$icon $volume"
+echo "$volume"
+
+# Color
+if [[ "$mute" == "on" ]]; then
+	echo "#00FF00"
+else
+	echo "#FF0000"
+fi

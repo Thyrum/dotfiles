@@ -9,9 +9,11 @@ mouse_warping none
 
 gaps inner 5
 gaps outer 5
-set $term --no-startup-id termite
+set $term --no-startup-id $TERMINAL
 set $mod Mod4
-set $BROWSER firefox
+
+# When holding $mod, move floating windows with mouse
+floating_modifier $mod normal
 
 # #---Dropdown Windows---# #
 # General dropdown window traits. The order can matter
@@ -26,15 +28,10 @@ for_window [app_id="dropdown_*"] move position center
 
 # #---Start External Scripts---# #
 # Set the background
-#exec --no-startup-id feh --randomize --bg-fill ~/Pictures/wallpaper/*
 output "*" background "$DOTFILES/wallpaper/$(ls $DOTFILES/wallpaper/ | shuf -n 1)" fill
-# Start compton
-#exec --no-startup-id compton
-# Set keyboard repeat delay and speed
-#exec --no-startup-id xset r rate 185 50
-# Set the screen layout correctly
-#exec --no-startup-id [ $(xrandr | grep " connected" | wc -l) = "2" ] && source ~/.screenlayout/dual.sh
-# Start notification deamon
+# Start picom
+#exec --no-startup-id picom
+# Start notification daemon
 exec mako
 
 bar {
@@ -47,7 +44,6 @@ bar {
 
 # #---Basic Bindings---# #
 bindsym $mod+Return 		exec $term
-#bindsym $mod+Shift+Return	exec urxvt; floating enable; move position center
 
 bindsym $mod+Shift+space 	floating toggle
 # Change focus between tiling / floating windows
@@ -58,27 +54,21 @@ bindsym $mod+Shift+e 		exec --no-startup-id prompt 'Are you sure?' 'swaymsg exit
 
 # #---Letter Key Bindings---# #
 bindsym $mod+q 				[con_id="__focused__"] kill
-#bindsym $mod+q 			[con_id="__focused__" app_id="^(?!dropdown_).*$"] kill
 bindsym $mod+Shift+q 		[con_id="__focused__"] kill -9
-#bindsym $mod+Shift+q 		[con_id="__focused__" app_id="^(?!dropdown_).*$"] exec --no-startup-id kill -9 `xdotool getwindowfocus getwindowpid`
 
-#bindsym $mod+u				exec $term -e '/bin/sh muxify uni $(find $UNI/ -maxdepth 3 -name .git | sed -e "s:$UNI/::g" -e "s:/.git::g" | bemenu -i)';
 bindsym $mod+u				exec bemenuunicode
 
 bindsym $mod+w 				exec $term -e nmtui
 bindsym $mod+Shift+w 		exec --no-startup-id $BROWSER
 
-bindsym $mod+t 				split toggle
-bindsym $mod+Shift+t		exec --no-startup-id ddspawn tmuxdd
+bindsym $mod+Shift+t 		split toggle
+bindsym $mod+t		exec --no-startup-id ddspawn tmuxdd
 bindsym $mod+m				exec --no-startup-id ddspawn cmusdd
 
 bindsym $mod+Shift+u 		resize shrink width 10 px or 10 ppt
 bindsym $mod+Shift+i 		resize grow height 10 px or 10 ppt
 bindsym $mod+Shift+o 		resize shrink height 10 px or 10 ppt
 bindsym $mod+Shift+p 		resize grow width 10 px or 10 ppt
-
-bindsym $mod+s 				gaps inner all set 15
-bindsym $mod+Shift+s		gaps inner all set 0
 
 bindsym $mod+d 				exec --no-startup-id bemenu-run
 
@@ -97,18 +87,16 @@ bindsym $mod+Shift+k		move up 30
 bindsym $mod+l 				focus right
 bindsym $mod+Shift+l		move right 30
 
-bindsym $mod+z 				gaps outer all set 15
-bindsym $mod+Shift+z 		gaps outer all set 0
-
 bindsym $mod+b 				bar mode toggle
-bindsym $mod+Shift+b 		floating toggle; sticky toggle; exec --no-startup-id hover left
 
-bindsym $mod+Shift+n 		floating toggle; sticky toggle; exec --no-startup-id hover right
+bindsym $mod+Shift+b 		floating enable; exec --no-startup-id hover left
+bindsym $mod+Shift+n 		floating enable; exec --no-startup-id hover right
+
+bindsym $mod+Shift+s		sticky toggle
 
 bindsym $mod+Shift+c		move position center;
 
 bindsym $mod+p 				exec --no-startup-id pause
-
 
 bindsym $mod+Shift+r		reload
 

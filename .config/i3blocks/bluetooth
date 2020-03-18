@@ -1,0 +1,16 @@
+#!/bin/sh
+
+if systemctl status bluetooth | grep inactive >/dev/null; then
+	status="off"
+else
+	status="on"
+fi
+
+if [[ "${BLOCK_BUTTON}" == "1" ]]; then
+	if [[ "$status" == "on" ]]; then
+		i3-msg -q exec blueman-manager >/dev/null
+	fi
+fi
+
+echo -e "$status\n$status"
+echo "#0000FF"

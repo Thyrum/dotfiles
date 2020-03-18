@@ -1,0 +1,31 @@
+#!/bin/sh
+
+#power=$(acpi -b | awk -F ", " '{print $2}' | sed 's/.$//')
+#state=$(acpi -b | cut -d ' ' -f 3)
+
+intstance="${BLOCK_INSTANCE:0}"
+
+power=$(cat /sys/class/power_supply/BAT$intstance/capacity)
+state=$(cat /sys/class/power_supply/BAT$intstance/status)
+
+# Full and short text
+if [ "$state" == "Charging" ]; then
+	statusicon="⚡"
+elif [ "$state" == "Unknown" ]; then
+	statusicon="🔋❓"
+else
+	statusicon="🔋"
+fi
+echo "$statusicon $power%"
+echo "$statusicon $power%"
+
+# Color
+if [ "$power" -lt "25" ]; then
+	echo "#FF0000"
+elif [ "$power" -lt "50" ]; then
+	echo "#FFA500"
+elif [ "$power" -lt "75" ]; then
+	echo "#FFA500"
+else
+	echo "#00FF00"
+fi

@@ -6,6 +6,7 @@ export PATH=$PATH:$HOME/.scripts/bin
 export TERMINAL=termite
 export BROWSER=firefox
 export EDITOR=nvim
+export MOZ_ENABLE_WAYLAND=1
 
 # My directories
 export UNI=$HOME/uni

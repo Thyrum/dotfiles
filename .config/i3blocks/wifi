@@ -1,0 +1,31 @@
+#!/bin/bash
+
+
+INTERFACE="${BLOCK_INSTANCE:-wlo1}"
+
+SSID=$(nmcli -g general.connection device show wlo1)
+
+#[[ -z "${BLOCK_BUTTON}"
+
+QUALITY=$(grep $INTERFACE /proc/net/wireless | awk '{ print int($3 * 100 / 70) }')
+
+if [[ "$BLOCK_BUTTON" == "1" ]]; then
+	wifistatus="$(nmcli r wifi)"
+	[[ "$wifistatus" == "enabled" ]] && nmcli r wifi off || nmcli r wifi on
+fi
+
+SSID=${SSID:-no connection}
+
+echo "$SSID"
+echo "$SSID"
+
+# color
+if [[ $QUALITY -ge 80 ]]; then
+    echo "#00FF00"
+elif [[ $QUALITY -lt 80 ]]; then
+    echo "#FFF600"
+elif [[ $QUALITY -lt 60 ]]; then
+    echo "#FFAE00"
+elif [[ $QUALITY -lt 40 ]]; then
+    echo "#FF0000"
+fi

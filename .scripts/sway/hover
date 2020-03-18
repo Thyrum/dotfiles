@@ -1,26 +1,29 @@
 #!/bin/sh
 [ -z "$1" ] && exit # If $1 is left, hovers in the bottom left, if right, the bottom right
-focused=`swaymsg -t get_tree | jq '.. | (.["nodes","floating_nodes"]? // empty) [] | select(.focused==true)'`
 
-screenwidth=`swaymsg -t get_tree | jq '.rect.width'`
-screenheight=`swaymsg -t get_tree | jq '.rect.height'`
-newwidth=$(expr $screenwidth / 3)
-newheight=$(expr $screenheight / 3)
+swaymsg resize set 33 ppt 33 ppt
 
-swaymsg resize set $newwidth $newheight
-#xdotool windowsize "$current" $newheight $newwidth
-#newsize=$(xdotool getwindowgeometry "$current" | grep Geometry | sed -e 's/x/ /g' | awk '{print $3}')
-#newwidth=$(xdotool getwindowgeometry "$current" | grep Geometry | grep -o " [0-9]*")
+focused_screen=`swaymsg -t get_outputs | jq '.[] | select(.focused==true)'`
+screenwidth=`echo "$focused_screen" | jq '.rect.width + .rect.x'`
+screenheight=`echo "$focused_screen" | jq '.rect.height + .rect.y'`
+
+focused_window=`swaymsg -t get_tree | jq '.. | (.["nodes","floating_nodes"]? // empty) [] | select(.focused==true)'`
+newwidth=`echo $focused_window | jq '.window_rect.width'`
+newheight=`echo $focused_window | jq '.window_rect.height'`
 
 vertical=$(expr $screenheight - $newheight)
+
 case "$1" in
-	left) horizontal=0;;
+	left) horizontal=`echo "$focused_screen" | jq '.rect.x'`;;
 	right) horizontal=$(expr $screenwidth - $newwidth);;
 esac
 
+echo "height: $newheight"
+echo "width: $newwidth"
+echo "screenwidth: $screenwidth"
+echo "screenheight: $screenheight"
+
 swaymsg move absolute position $horizontal $vertical
-#case "$1" in
-#	left) horizontal=0; vertical=$(($(xdotool getdisplaygeometry | awk '{print $2}') - newsize)) ;;
-#	right) horizontal=$(($(xdotool getdisplaygeometry | awk '{print $1}') - newwidth)) ; vertical=$(($(xdotool getdisplaygeometry | awk '{print $2}') - newsize)) ;;
-#esac
-#xdotool windowmove "$current" $horizontal $vertical
+
+echo "new horizontal: $horizontal"
+echo "new vertical: $vertical"
