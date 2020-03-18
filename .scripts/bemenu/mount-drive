@@ -12,7 +12,7 @@ selected_location=$(echo "$mount_location" | bemenu -l 10 --fn mono -p "Mount wh
 # If the given location does not exist, ask if we must create it
 if [ ! -d "$selected_location" ]; then
 	if [ "$(echo -e "Yes\nNo" | bemenu --fn mono -i -p "Directory $selected_location does not exist, create it?")" = "Yes" ]; then
-		sudo mkdir $selected_location
+		sudo mkdir -p $selected_location
 	else
 		exit
 	fi

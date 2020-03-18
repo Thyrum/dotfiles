@@ -1,3 +1,5 @@
+# First make sure "sudo light" can be executed without a password
+
 #---Basic Definitions---# #
 #for_window [class="^.*"] border pixel 2
 hide_edge_borders none
@@ -5,8 +7,8 @@ default_floating_border pixel 1
 default_border pixel 1
 mouse_warping none
 
-gaps inner 15
-gaps outer 15
+gaps inner 5
+gaps outer 5
 set $term --no-startup-id termite
 set $mod Mod4
 set $BROWSER firefox
@@ -57,10 +59,10 @@ bindsym $mod+Shift+e 		exec --no-startup-id prompt 'Are you sure?' 'swaymsg exit
 # #---Letter Key Bindings---# #
 bindsym $mod+q 				[con_id="__focused__"] kill
 #bindsym $mod+q 			[con_id="__focused__" app_id="^(?!dropdown_).*$"] kill
-bindsym $mod+Shift+q 		[con_id="__focused__"] exec --no-startup-id kill -9 `xdotool getwindowfocus getwindowpid`
+bindsym $mod+Shift+q 		[con_id="__focused__"] kill -9
 #bindsym $mod+Shift+q 		[con_id="__focused__" app_id="^(?!dropdown_).*$"] exec --no-startup-id kill -9 `xdotool getwindowfocus getwindowpid`
 
-#bindsym $mod+u				exec --no-startup-id startup="muxify uni $(find $UNI/ -maxdepth 3 -name .git | sed -e \"s:$UNI/::g\" -e \"s:/.git::g\" | bemenu)"; exec urxvt;
+#bindsym $mod+u				exec $term -e '/bin/sh muxify uni $(find $UNI/ -maxdepth 3 -name .git | sed -e "s:$UNI/::g" -e "s:/.git::g" | bemenu -i)';
 bindsym $mod+u				exec bemenuunicode
 
 bindsym $mod+w 				exec $term -e nmtui
@@ -78,7 +80,7 @@ bindsym $mod+Shift+p 		resize grow width 10 px or 10 ppt
 bindsym $mod+s 				gaps inner all set 15
 bindsym $mod+Shift+s		gaps inner all set 0
 
-bindsym $mod+d 				exec --no-startup-id j4-dmenu-desktop --dmenu='bemenu -i' --term='$TERMINAL'
+bindsym $mod+d 				exec --no-startup-id bemenu-run
 
 bindsym $mod+f 				fullscreen toggle
 bindsym $mod+g 				fullscreen toggle global
@@ -163,10 +165,8 @@ bindsym XF86AudioLowerVolume 	exec --no-startup-id media volume down
 bindsym XF86AudioMute 			exec --no-startup-id media volume toggle
 
 # Brightness keys
-#bindsym XF86BrightnessUp 	exec --no-startup-id light -A 5
-#bindsym XF86BrightnessDown 	exec --no-startup-id light -U 5
-bindsym $mod+F3 			exec --no-startup-id media brightness up
-bindsym $mod+F2 			exec --no-startup-id media brightness down
+bindsym $mod+F3			 	exec --no-startup-id sudo light -A 5
+bindsym $mod+F2			 	exec --no-startup-id sudo light -U 5
 
 # Music control
 bindsym XF86AudioNext		exec --no-startup-id media next
@@ -189,20 +189,3 @@ input "2:14:ETPS/2_Elantech_Touchpad" {
 	natural_scroll enabled
 }
 #setxkbmap -option caps:swapescape
-
-# #---Idle setup---# #
-#exec swayidle -w \
-#timeout 10 'swaylock' \
-#timeout 10 'swaymsg "output * dpms off"' \
-#resume 'swaymsg "output * dpms on"' \
-#before-sleep 'swaylock'
-#exec swayidle -w \
-#          timeout 10 'notify-send "Timeout 1"' \
-#		  timeout 10 'notify-send "Timeout 2"' \
-#               resume 'notify-send "Resume"' \
-#before-sleep 'notify-send "Before-sleep"'
-
-#exec swayidle -w \
-#		  timeout 10 'swaymsg "output * dpms off"' \
-#               resume 'swaymsg "output * dpms on"' \
-#before-sleep 'swaymsg "output * dpms off"'
