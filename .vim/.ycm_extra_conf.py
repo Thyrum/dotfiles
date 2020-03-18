@@ -185,7 +185,7 @@ def FlagsForCompilationDatabase(root, filename):
     except:
         return None
 
-def FlagsForFile(filename):
+def Settings(filename):
     final_flags = CPP_BASE_FLAGS 
     root = os.path.realpath(filename);
     compilation_db_flags = FlagsForCompilationDatabase(root, filename)
