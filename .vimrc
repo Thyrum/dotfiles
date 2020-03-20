@@ -17,6 +17,8 @@ call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
+Plug 'rdnetto/YCM-Generator', {'branch': 'stable'}
+
 Plug 'itchyny/lightline.vim'
 Plug 'Valloric/YouCompleteMe'
 
@@ -34,7 +36,6 @@ let g:lightline = {
 
 " YouCompleteMe settings
 let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
-let g:ycm_confirm_extra_conf = 0
 let g:ycm_keep_logfiles = 1
 let g:ycm_log_level = 'info'
 let g:ycm_always_populate_location_list = 1

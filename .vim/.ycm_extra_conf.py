@@ -1,11 +1,12 @@
+# File obtained from https://github.com/JDevlieghere/dotfiles/blob/master/.vim/.ycm_extra_conf.py
+# with slight modifications to the FlagsForInclude so that the include directory gets added as well
+
 import os
 import os.path
 import fnmatch
 import logging
 import ycm_core
 import re
-
-# I got this file from https://jonasdevlieghere.com/a-better-youcompleteme-config/
 
 C_BASE_FLAGS = [
         '-Wall',
@@ -153,13 +154,12 @@ def FlagsForInclude(root):
     try:
         include_path = FindNearest(root, 'include')
         flags = []
-        if(len(flags)>1):
-            for dirroot, dirnames, filenames in os.walk(include_path):
-                logging.info("dirroot: " + dirroot + ", dirnames: " + dirnames + ", filenames: " + filenames)
+        for dirroot, dirnames, filenames in os.walk(include_path):
+            for dir_path in dirnames:
                 real_path = os.path.join(dirroot, dir_path)
                 flags = flags + ["-I" + real_path]
-        else:
-            flags = flags + ["-I" + include_path]
+            if len(filenames) != 0:
+                flags = flags + ["-I" + include_path]
         return flags
     except:
         return None
@@ -185,8 +185,7 @@ def FlagsForCompilationDatabase(root, filename):
     except:
         return None
 
-def Settings(filename):
-    final_flags = CPP_BASE_FLAGS 
+def Settings(filename, **kwargs):
     root = os.path.realpath(filename);
     compilation_db_flags = FlagsForCompilationDatabase(root, filename)
     if compilation_db_flags:
@@ -205,8 +204,9 @@ def Settings(filename):
         include_flags = FlagsForInclude(root)
         if include_flags:
             final_flags = final_flags + include_flags
-    logging.info( 'final_flags: ' + ''.join(final_flags))
+    logging.info(final_flags)
     return {
             'flags': final_flags,
             'do_cache': True
-}
+            }
+
