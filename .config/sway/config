@@ -62,8 +62,9 @@ bindsym $mod+w 				exec $term -e nmtui
 bindsym $mod+Shift+w 		exec --no-startup-id $BROWSER
 
 bindsym $mod+Shift+t 		split toggle
-bindsym $mod+t		exec --no-startup-id ddspawn tmuxdd
+bindsym $mod+t				exec --no-startup-id ddspawn tmuxdd
 bindsym $mod+m				exec --no-startup-id ddspawn cmusdd
+bindsym $mod+c				exec --no-startup-id ddspawn bc
 
 bindsym $mod+Shift+u 		resize shrink width 10 px or 10 ppt
 bindsym $mod+Shift+i 		resize grow height 10 px or 10 ppt
