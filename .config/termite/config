@@ -6,7 +6,7 @@
 #cell_width_scale = 1.0
 #clickable_url = true
 #dynamic_title = true
-font = Monospace 9
+font = Monospace 10
 #fullscreen = true
 #icon_name = terminal
 #mouse_autohide = false
@@ -47,42 +47,80 @@ scrollback_lines = 10000
 highlight = #2f2f2f
 
 # special
-foreground      = #c5c8c6
-foreground_bold = #c5c8c6
-cursor          = #c5c8c6
-background      = #1d1f21
+foreground      = #a5a2a2
+foreground_bold = #a5a2a2
+cursor          = #a5a2a2
+background      = #090300
 
 # black
-color0  = #282a2e
-color8  = #373b41
+color0  = #090300
+color8  = #5c5855
 
 # red
-color1  = #a54242
-color9  = #cc6666
+color1  = #db2d20
+color9  = #db2d20
 
 # green
-color2  = #8c9440
-color10 = #b5bd68
+color2  = #01a252
+color10 = #01a252
 
 # yellow
-color3  = #de935f
-color11 = #f0c674
+color3  = #fded02
+color11 = #fded02
 
 # blue
-color4  = #5f819d
-color12 = #81a2be
+color4  = #01a0e4
+color12 = #01a0e4
 
 # magenta
-color5  = #85678f
-color13 = #b294bb
+color5  = #a16a94
+color13 = #a16a94
 
 # cyan
-color6  = #5e8d87
-color14 = #8abeb7
+color6  = #b5e4f4
+color14 = #b5e4f4
 
 # white
-color7  = #707880
-color15 = #c5c8c6
+color7  = #a5a2a2
+color15 = #f7f7f7
+
+## special
+#foreground      = #c5c8c6
+#foreground_bold = #c5c8c6
+#cursor          = #c5c8c6
+#background      = #1d1f21
+#
+## black
+#color0  = #282a2e
+#color8  = #373b41
+#
+## red
+#color1  = #a54242
+#color9  = #cc6666
+#
+## green
+#color2  = #8c9440
+#color10 = #b5bd68
+#
+## yellow
+#color3  = #de935f
+#color11 = #f0c674
+#
+## blue
+#color4  = #5f819d
+#color12 = #81a2be
+#
+## magenta
+#color5  = #85678f
+#color13 = #b294bb
+#
+## cyan
+#color6  = #5e8d87
+#color14 = #8abeb7
+#
+## white
+#color7  = #707880
+#color15 = #c5c8c6
 
 [hints]
 #font = Monospace 12
