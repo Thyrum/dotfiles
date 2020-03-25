@@ -3,7 +3,7 @@
 export PATH=$PATH:$HOME/.scripts/bin
 
 # default programs
-export TERMINAL=termite
+export TERMINAL=alacritty
 export BROWSER=firefox
 export EDITOR=nvim
 export MOZ_ENABLE_WAYLAND=1
