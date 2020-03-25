@@ -56,7 +56,8 @@ bindsym $mod+Shift+e 		exec --no-startup-id prompt 'Are you sure?' 'swaymsg exit
 bindsym $mod+q 				[con_id="__focused__"] kill
 bindsym $mod+Shift+q 		[con_id="__focused__"] kill -9
 
-bindsym $mod+u				exec bemenuunicode
+bindsym $mod+Ctrl+u			exec bemenuunicode
+bindsym $mod+u				exec $term --hold -e bemenuuni
 
 bindsym $mod+w 				exec $term -e nmtui
 bindsym $mod+Shift+w 		exec --no-startup-id $BROWSER

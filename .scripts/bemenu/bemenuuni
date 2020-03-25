@@ -1,0 +1,3 @@
+#!/bin/sh
+
+muxify uni $(find $UNI/ -maxdepth 3 -name .git | sed -e "s:$UNI/::g" -e "s:/.git::g" | bemenu -i)
