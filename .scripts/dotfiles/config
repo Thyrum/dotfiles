@@ -1,0 +1,114 @@
+#!/bin/bash
+
+
+[ -z ${DOTFILES} ] && DOTFILES="$HOME/dotfiles";
+
+
+function link_file {
+	local homefile="${HOME}/$1"
+	local dotfile="${DOTFILES}/$1"
+
+		# Check if the file exists within the dotfiles
+		if [ ! -f "$dotfile" ] || [ -h "$dotfile" ]
+		then
+			echo "Couldn't link $file because it is not a proper file"
+			return
+		fi
+
+		# Check if the file already exists within home and prompt an override
+		if  ! $force && [ -f "$homefile" ]
+		then
+			read -r -p "${HOME}/$file already exists, do you want to overwrite it? [y/N] " response
+			case "$response" in
+				[yY][eE][sS]|[yY]) ;;
+				*) return ;;
+			esac
+		fi
+
+		$verbose && echo "Linking ${file}"
+
+		mkdir -p $(dirname "$homefile")
+		ln -sf "$dotfile" "$homefile"
+	}
+
+function link {
+	[ -z $1 ] && usage
+
+	for file in $@
+	do
+		link_file $file
+	done
+}
+
+function steal_file {
+	local homefile="${HOME}/$1"
+	local dotfile="${DOTFILES}/$1"
+
+		# Check if the file exists within the home folder
+	if [ ! -f "$homefile" ] || [ -h "$homefile" ]
+	then
+		echo "Couldn't steal $file because it is not a proper file"
+		return
+	fi
+
+	# Check if the file already exists within the dotfiles and prompt an override
+	if  ! $force && [ -f "$dotfile" ]
+	then
+		read -r -p "${DOTFILES}/$file already exists, do you want to overwrite it? [y/N] " response
+		case "$response" in
+			[yY][eE][sS]|[yY]) ;;
+			*) return ;;
+		esac
+	fi
+
+	$verbose && echo "Stealing ${file}"
+
+	mkdir -p $(dirname "$dotfile")
+	mv -f $homefile $dotfile
+
+	link_file $1
+}
+
+function steal {
+	[ -z $1 ] && usage
+
+	for file in $@
+	do
+		steal_file $file
+	done
+}
+
+function usage {
+	echo "Usage: config [-v] [-f] link  FILES..."
+	echo "       config [-v] [-f] steal FILES..."
+	exit
+}
+
+verbose=false
+force=false
+
+for option in $@
+do
+	shift
+	case "$option" in
+		"-v")
+			verbose=true
+			;;
+		"-f")
+			force=true
+			;;
+		"link")
+			link "$@"
+			exit
+			;;
+		"steal")
+			steal "$@"
+			exit
+			;;
+		*)
+			usage
+			;;
+	esac
+done
+
+usage
