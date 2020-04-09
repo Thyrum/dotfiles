@@ -38,6 +38,7 @@ Plug 'Valloric/YouCompleteMe'
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
+Plug 'tpope/vim-fugitive'
 call plug#end()
 
 " ===========================
