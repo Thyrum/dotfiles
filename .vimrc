@@ -48,8 +48,15 @@ call plug#end()
 " Lightline settings
 set laststatus=2
 let g:lightline = {
-    \ 'colorscheme': 'wombat',
-    \ }
+			\ 'colorscheme': 'wombat',
+			\ 'active': {
+			\   'left': [ [ 'mode', 'paste' ],
+			\             [ 'fugitive', 'readonly', 'filename', 'modified'] ]
+			\ },
+			\ 'component_function': {
+			\   'fugitive': 'FugitiveHead',
+			\ },
+			\ }
 
 " YouCompleteMe settings
 let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
