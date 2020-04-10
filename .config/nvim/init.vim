@@ -1,23 +1,14 @@
+"   ________
+"  /_  __/ /_  __  _________  ______ ___
+"   / / / __ \/ / / / ___/ / / / __ `__ \
+"  / / / / / / /_/ / /  / /_/ / / / / / /
+" /_/ /_/ /_/\__, /_/   \__,_/_/ /_/ /_/
+"           /____/
+"
+" Filename:   .config/nvim/init.vim
+" Github:     https://github.com/Thyrum/dotfiles
+" Maintainer: Thyrum (Aron de Jong)
+
 set runtimepath^=~/.vim runtimepath+=/.vim/after
 let &packpath = &runtimepath
 source ~/.vimrc
-" Vim-plug plugin list
-"call plug#begin('~/.vim/plugged')
-"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-"Plug 'itchyny/lightline.vim'
-"call plug#end()
-"
-"" Lightline settings
-"if has('gui_running')
-"   set laststatus=2
-"   set noshowmode
-"endif
-"
-"
-"" General settings
-"set mouse=a
-"set number
-"set cindent
-"set tabstop=8 softtabstop=0 expandtab shiftwidth=3 smarttab
-"set hlsearch " Enable highlight for all search querys
-"colorscheme ron

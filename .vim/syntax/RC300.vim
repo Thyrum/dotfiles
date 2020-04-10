@@ -1,6 +1,14 @@
-" Vim syntax file
+"   ________
+"  /_  __/ /_  __  _________  ______ ___
+"   / / / __ \/ / / / ___/ / / / __ `__ \
+"  / / / / / / /_/ / /  / /_/ / / / / / /
+" /_/ /_/ /_/\__, /_/   \__,_/_/ /_/ /_/
+"           /____/
+"
+" Filename:   .vim/syntax/RC300.vim
+" Github:     https://github.com/Thyrum/dotfiles
+" Maintainer: Thyrum (Aron de Jong)
 " Language: RC300
-" Maintainer: Aron de Jong
 " Last Change: 2020-03-05
 
 if version < 600

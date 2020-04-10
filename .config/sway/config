@@ -1,4 +1,16 @@
+#   ________
+#  /_  __/ /_  __  _________  ______ ___
+#   / / / __ \/ / / / ___/ / / / __ `__ \
+#  / / / / / / /_/ / /  / /_/ / / / / / /
+# /_/ /_/ /_/\__, /_/   \__,_/_/ /_/ /_/
+#           /____/
+#
+# Filename:   .config/sway/config
+# Github:     https://github.com/Thyrum/dotfiles
+# Maintainer: Thyrum (Aron de Jong)
+
 # First make sure "sudo light" can be executed without a password
+# Otherwise you will not be able to change the brightness
 
 #---Basic Definitions---# #
 #for_window [class="^.*"] border pixel 2

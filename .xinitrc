@@ -1,4 +1,14 @@
 #!/bin/sh
+#   ________
+#  /_  __/ /_  __  _________  ______ ___
+#   / / / __ \/ / / / ___/ / / / __ `__ \
+#  / / / / / / /_/ / /  / /_/ / / / / / /
+# /_/ /_/ /_/\__, /_/   \__,_/_/ /_/ /_/
+#           /____/
+#
+# Filename:   .xinitrc
+# Github:     https://github.com/Thyrum/dotfiles
+# Maintainer: Thyrum (Aron de Jong)
 
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap
