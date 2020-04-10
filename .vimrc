@@ -69,6 +69,7 @@ set cinoptions=(0,u0,U0,g0,N-s,t0
 
 
 let mapleader=" "
+set modeline
 set number relativenumber
 set cursorline
 set mouse=a
