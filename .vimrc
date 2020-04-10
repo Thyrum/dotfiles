@@ -29,6 +29,7 @@ Plug 'Valloric/YouCompleteMe'
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tpope/vim-fugitive'
+Plug 'editorconfig/editorconfig-vim'
 
 call plug#end()
 
@@ -143,6 +144,15 @@ endif
 
 
 nnoremap <c-n> :NERDTreeToggle<CR>
+
+
+" }}}
+
+" EditorConfig {{{
+
+
+" Don't use editorconfig when editing fugitive buffers or going over ssh
+let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
 
 " }}}
