@@ -81,6 +81,15 @@ set hlsearch
 set foldmethod=syntax
 set foldlevel=9999999
 
+" Split to the right or below by default
+set splitbelow splitright
+
+" Movo to differnt window using ctrl-direction
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
+
 " Hightlight everything after column 80
 let &colorcolumn="80,".join(range(120,999),",")
 
