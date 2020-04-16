@@ -10,3 +10,4 @@
 # Maintainer: Thyrum (Aron de Jong)
 
 .*.swp
+.fuse_*
