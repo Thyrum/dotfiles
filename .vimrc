@@ -30,6 +30,7 @@ Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tpope/vim-fugitive'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'dpc/vim-smarttabs'
 
 call plug#end()
 
@@ -54,7 +55,7 @@ colorscheme ron
 " Indentation and alignment {{{
 
 
-set expandtab
+set noexpandtab
 set softtabstop=0
 set shiftwidth=2
 set tabstop=2
@@ -164,6 +165,11 @@ nnoremap <c-n> :NERDTreeToggle<CR>
 " Don't use editorconfig when editing fugitive buffers or going over ssh
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
+
+" }}}
+
+" tex files {{{
+autocmd BufWritePost *.tex silent exec "!pdflatex %"
 
 " }}}
 
