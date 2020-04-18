@@ -1,8 +1,6 @@
 #!/bin/bash 
 shopt -s extglob
 
-UNI=/home/aron/uni
-
 session=""
 varkill=false
 
