@@ -54,7 +54,7 @@ Remote origin : \033[1;32m$(git remote get-url origin)\033[0m"' C-m
         # setup htop
         tmux send-keys 'htop --user=$USER' C-m
         tmux select-pane -t 0
-        tmux send-keys 'git pull; clear' C-m
+        tmux send-keys 'git pull' C-m
 
 #while :; do tmux send-keys -t prt/pt1:1.2 'htop -p$(muxify pid $(tmux display-message -p "#S") | tr " " ",")' C-m; sleep 10; tmux send-keys -t prt/pt1:1.2 'q'; done
 
