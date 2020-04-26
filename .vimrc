@@ -99,8 +99,8 @@ nnoremap <leader>r :set relativenumber!<CR>
 " Toggle list variables
 nnoremap <leader>l :set list!<cr>
 
-inoremap <buffer> ;; <C-O>/<++><CR><C-O>c4l
-nnoremap <buffer> ;; /<++><CR>c4l
+"inoremap <buffer> ;; <C-O>/<++><CR><C-O>c4l
+nnoremap <leader>; /<++><CR>c4l
 
 
 " }}}
