@@ -5,22 +5,20 @@
 # All other args are terminal settings.
 # Terminal names are in dropdown_* to allow easily setting i3 settings.
 
-TERMINAL=termite
-
 [ -z "$1" ] && exit
 
-if swaymsg -t get_tree | grep "\"dropdown_$1\",";
+if swaymsg -t get_tree | grep "\"dropdown_$1\"," >/dev/null;
 then
-	echo "Window detected."
-	visible=$(swaymsg -t get_tree | jq ".. | (.[\"nodes\",\"floating_nodes\"]? // empty) [] | select(.app_id==\"dropdown_$1\") | .visible")
+	echo "Window detected"
+	visible=$(swaymsg -t get_tree | jq ".. | (.[\"nodes\",\"floating_nodes\"]? // empty) [] | select(.name==\"dropdown_$1\") | .visible")
 	if $visible; then
 		echo "$visible Hiding"
-		swaymsg "[app_id=\"dropdown_$1\"] move to scratchpad";
+		swaymsg "[title=\"dropdown_$1\"] move to scratchpad";
 	else
 		echo "Showing"
-		swaymsg "[app_id=\"dropdown_$1\"] scratchpad show; [app_id=\"dropdown_$1\"] move position center";
+		swaymsg "[title=\"dropdown_$1\"] scratchpad show; [title=\"dropdown_$1\"] move position center";
 	fi
 else
-	echo "Window not detected... spawning."
-	swaymsg "exec --no-startup-id $TERMINAL --name=dropdown_$1 $@ -e $1"
+	echo "Window not detected, now spawning."
+	swaymsg "exec --no-startup-id $TERMINAL --title=dropdown_$1 -e $1"
 fi

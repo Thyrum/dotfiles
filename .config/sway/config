@@ -30,13 +30,13 @@ floating_modifier $mod normal
 # #---Dropdown Windows---# #
 # General dropdown window traits. The order can matter
 #for_window [app_id="dropdown_*"] floating enable; move scratchpad; sticky enable; scratchpad show;
-for_window [app_id="dropdown_*"] floating enable
-for_window [app_id="dropdown_*"] sticky enable
-for_window [app_id="dropdown_tmuxdd"] resize set 625 450
-for_window [app_id="dropdown_dropdowncalc"] resize set 800 300
-for_window [app_id="dropdown_tmuxdd"] border pixel 3
-for_window [app_id="dropdown_dropdowncalc"] border pixel 2
-for_window [app_id="dropdown_*"] move position center
+for_window [title="dropdown_*"] floating enable
+for_window [title="dropdown_*"] sticky enable
+for_window [title="dropdown_tmuxdd"] resize set 625 450
+for_window [title="dropdown_dropdowncalc"] resize set 800 300
+for_window [title="dropdown_tmuxdd"] border pixel 3
+for_window [title="dropdown_dropdowncalc"] border pixel 2
+for_window [title="dropdown_*"] move position center
 
 # #---Start External Scripts---# #
 # Set the background
