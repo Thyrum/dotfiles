@@ -42,7 +42,7 @@ call plug#end()
 
 augroup MyColors
 	autocmd!
-	autocmd ColorScheme * highlight ColorColumn ctermbg=235 guibg=#2c2d27
+	autocmd ColorScheme * highlight ColorColumn ctermbg=235 guibg=#282924
 augroup END
 
 syntax enable
