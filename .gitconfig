@@ -14,6 +14,7 @@
 	email = a.de.jong.6@umail.leidenuniv.nl
 [push]
 	default = simple
+	recurseSubmodules = check
 [core]
 	editor       = vim
 	excludesfile = /vol/home/s2120437/.gitignore_global
@@ -24,3 +25,9 @@
 	d     = diff
 	dc    = diff --cached
 	b     = branch -v
+[fetch]
+	recurseSubmodules = on-demand
+[status]
+	submoduleSummary = true
+[submodule]
+	recurse = true
