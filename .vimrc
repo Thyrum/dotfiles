@@ -31,6 +31,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tpope/vim-fugitive'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'dpc/vim-smarttabs'
+Plug 'thaerkh/vim-indentguides'
 
 call plug#end()
 
@@ -43,12 +44,16 @@ call plug#end()
 augroup MyColors
 	autocmd!
 	autocmd ColorScheme * highlight ColorColumn ctermbg=235 guibg=#282924
+	autocmd ColorScheme * highlight LineNr ctermfg=238 cterm=none
+	autocmd ColorScheme * highlight CursorLineNr ctermfg=220 ctermbg=238 cterm=bold
+	autocmd ColorScheme * highlight CursorLine ctermbg=238 cterm=none
 augroup END
 
 syntax enable
 filetype plugin indent on
 colorscheme ron
 
+set cursorline
 
 " }}}
 
@@ -62,6 +67,7 @@ set tabstop=2
 set smarttab 
 set cindent
 set cinoptions=(0,u0,U0,g0,N-s,t0
+"set cinoptions=u0,U0,g0,N-s,t0
 
 
 " }}}
@@ -72,12 +78,10 @@ set cinoptions=(0,u0,U0,g0,N-s,t0
 let mapleader=" "
 set modeline
 set number relativenumber
-set cursorline
 set mouse=a
 set hlsearch
 set scrolloff=3
 set showbreak=↪\ 
-set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨
 set hlsearch
 set foldmethod=syntax
 set foldlevel=9999999
@@ -96,12 +100,25 @@ let &colorcolumn="80,".join(range(120,999),",")
 
 " Disable relative numbmers, usefull for slow internet connections
 nnoremap <leader>r :set relativenumber!<CR>
-" Toggle list variables
-nnoremap <leader>l :set list!<cr>
 
 "inoremap <buffer> ;; <C-O>/<++><CR><C-O>c4l
 nnoremap <leader>; /<++><CR>c4l
 
+function! ToggleListChars()
+	if &listchars == "tab:┆ " && &list
+		set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨
+	elseif &listchars == "tab:→ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨" && &list
+		set nolist
+	else
+		set listchars=tab:┆\ 
+		set list
+	endif
+endfunction
+set listchars=tab:┆\ 
+set list
+
+" Toggle list variables
+nnoremap <leader>l :call ToggleListChars()<cr>
 
 " }}}
 
