@@ -15,12 +15,12 @@
 #---Basic Definitions---# #
 #for_window [class="^.*"] border pixel 2
 hide_edge_borders none
-default_floating_border pixel 1
-default_border pixel 1
+default_floating_border pixel 2
+default_border pixel 2
 mouse_warping none
 
-gaps inner 5
-gaps outer 5
+gaps inner 4
+gaps outer 4
 set $term --no-startup-id $TERMINAL
 set $mod Mod4
 
@@ -35,7 +35,6 @@ for_window [title="dropdown_*"] sticky enable
 for_window [title="dropdown_tmuxdd"] resize set 625 450
 for_window [title="dropdown_dropdowncalc"] resize set 800 300
 for_window [title="dropdown_tmuxdd"] border pixel 3
-for_window [title="dropdown_dropdowncalc"] border pixel 2
 for_window [title="dropdown_*"] move position center
 
 # #---Start External Scripts---# #
