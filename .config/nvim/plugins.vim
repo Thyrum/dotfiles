@@ -34,7 +34,7 @@ Plug 'Valloric/YouCompleteMe'
 Plug 'tpope/vim-fugitive'
 
 " Visuals
-Plug 'thaerkh/vim-indentguides'
+"Plug 'thaerkh/vim-indentguides'
 Plug 'itchyny/lightline.vim'
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -42,6 +42,9 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 " Indentation
 Plug 'editorconfig/editorconfig-vim'
 Plug 'dpc/vim-smarttabs'
+
+" LaTeX
+Plug 'lervag/vimtex'
 
 call plug#end()
 
@@ -78,3 +81,13 @@ endif
 
 " Don't use editorconfig when editing fugitive buffers or going over ssh
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+
+" Vimtex
+let g:vimtex_compiler_progname = 'nvr'
+
+let g:tex_flavor='latex'
+let g:vimtex_view_method='zathura'
+let g:vimtex_quickfix_mode=0
+set concealcursor=
+set conceallevel=1
+let g:tex_conceal='abdmg'

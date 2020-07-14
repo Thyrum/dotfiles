@@ -38,8 +38,8 @@ nnoremap <leader>r :set relativenumber!<CR>
 nnoremap <leader>; /<++><CR>c4l
 
 " Edit/source the vimrc
-nnoremap <leader>ev :vsplit ~/.vimrc<cr>
-nnoremap <leader>sv :source $MYVIMRC <bar> :doautocmd BufRead<cr>
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
 
 "=================
 " Plugin Bindings

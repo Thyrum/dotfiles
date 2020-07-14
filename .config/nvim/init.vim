@@ -32,7 +32,7 @@ augroup CursorLine
 augroup END
 
 " Hightlight everything after column 80
-let &colorcolumn="80,".join(range(120,999),",")
+let &colorcolumn="81,".join(range(121,9999),",")
 
 syntax enable
 filetype plugin indent on
@@ -48,6 +48,8 @@ set tabstop=2
 set smarttab 
 set cindent
 set cinoptions=(0,u0,U0,g0,N-s,t0
+
+autocmd FileType text set cinoptions=u0,U0,g0,N-s,t0
 
 
 "====
@@ -68,5 +70,6 @@ set list
 "======
 " Misc
 "======
+set clipboard=unnamedplus
 set nomodeline
-autocmd BufWritePost *.tex silent exec "!pdflatex %"
+"autocmd BufWritePost *.tex silent exec "!pdflatex %"
