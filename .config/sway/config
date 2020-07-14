@@ -30,16 +30,18 @@ floating_modifier $mod normal
 # #---Dropdown Windows---# #
 # General dropdown window traits. The order can matter
 #for_window [app_id="dropdown_*"] floating enable; move scratchpad; sticky enable; scratchpad show;
-for_window [title="dropdown_*"] floating enable
-for_window [title="dropdown_*"] sticky enable
-for_window [title="dropdown_tmuxdd"] resize set 625 450
+for_window [title="dropdown_*"]            floating enable
+for_window [title="dropdown_*"]            sticky enable
+for_window [title="dropdown_tmuxdd"]       resize set 625 450
 for_window [title="dropdown_dropdowncalc"] resize set 800 300
-for_window [title="dropdown_tmuxdd"] border pixel 3
-for_window [title="dropdown_*"] move position center
+for_window [title="dropdown_tmuxdd"]       border pixel 3
+for_window [title="dropdown_*"]            move position center
 
 # #---Start External Scripts---# #
 # Set the background
 output "*" background "$DOTFILES/wallpaper/$(ls $DOTFILES/wallpaper/ | shuf -n 1)" fill
+output HDMI-A-2 pos 0 0
+output eDP-1 pos 1680 0
 # Start picom
 #exec --no-startup-id picom
 # Start notification daemon
@@ -54,64 +56,65 @@ bar {
 }
 
 # #---Basic Bindings---# #
-bindsym $mod+Return 		exec $term
+bindsym $mod+Return exec $term
 
-bindsym $mod+Shift+space 	floating toggle
+bindsym $mod+Shift+space floating toggle
 # Change focus between tiling / floating windows
-bindsym $mod+space 			focus mode_toggle
+bindsym $mod+space focus mode_toggle
 
-bindsym $mod+Escape 		workspace prev
-bindsym $mod+Shift+e 		exec --no-startup-id prompt 'Are you sure?' 'swaymsg exit'
+bindsym $mod+Escape      workspace prev
+bindsym $mod+Shift+e     exec --no-startup-id prompt 'Are you sure?' 'swaymsg exit'
 
 # #---Letter Key Bindings---# #
-bindsym $mod+q 				[con_id="__focused__"] kill
-bindsym $mod+Shift+q 		[con_id="__focused__"] kill -9
+bindsym $mod+q           [con_id="__focused__"] kill
+bindsym $mod+Shift+q     [con_id="__focused__"] kill -9
 
-bindsym $mod+Ctrl+u			exec bemenuunicode
-bindsym $mod+u				exec $term -e bemenuuni
+bindsym $mod+Ctrl+u      exec bemenuunicode
+bindsym $mod+u           exec $term -e bemenuuni
 
-bindsym $mod+w 				exec $term -e nmtui
-bindsym $mod+Shift+w 		exec --no-startup-id $BROWSER
+bindsym $mod+w           exec $term -e nmtui
+bindsym $mod+Shift+w     exec --no-startup-id $BROWSER
 
-bindsym $mod+Shift+t 		split toggle
-bindsym $mod+t				exec --no-startup-id ddspawn tmuxdd
-bindsym $mod+m				exec --no-startup-id ddspawn cmusdd
-bindsym $mod+c				exec --no-startup-id ddspawn bc
+bindsym $mod+Shift+t     split toggle
+bindsym $mod+t           exec --no-startup-id ddspawn tmuxdd
+bindsym $mod+m           exec --no-startup-id ddspawn cmusdd
+bindsym $mod+c           exec --no-startup-id ddspawn bc
+bindsym XF86Calculator   exec --no-startup-id ddspawn bc
 
-bindsym $mod+Shift+u 		resize shrink width 10 px or 10 ppt
-bindsym $mod+Shift+i 		resize grow height 10 px or 10 ppt
-bindsym $mod+Shift+o 		resize shrink height 10 px or 10 ppt
-bindsym $mod+Shift+p 		resize grow width 10 px or 10 ppt
+bindsym $mod+Shift+u     resize shrink width 10 px or 10 ppt
+bindsym $mod+Shift+i     resize grow height 10 px or 10 ppt
+bindsym $mod+Shift+o     resize shrink height 10 px or 10 ppt
+bindsym $mod+Shift+p     resize grow width 10 px or 10 ppt
 
-bindsym $mod+d 				exec --no-startup-id bemenu-run
+bindsym $mod+d           exec --no-startup-id bemenu-run
 
-bindsym $mod+f 				fullscreen toggle
-bindsym $mod+g 				fullscreen toggle global
+bindsym $mod+f           fullscreen toggle
+bindsym $mod+g           fullscreen toggle global
 
-bindsym $mod+h 				focus left
-bindsym $mod+Shift+h		move left 30
+bindsym $mod+h           focus left
+bindsym $mod+Shift+h     move left 30
 
-bindsym $mod+j 				focus down
-bindsym $mod+Shift+j		move down 30
+bindsym $mod+j           focus down
+bindsym $mod+Shift+j     move down 30
 
-bindsym $mod+k 				focus up
-bindsym $mod+Shift+k		move up 30
+bindsym $mod+k           focus up
+bindsym $mod+Shift+k     move up 30
 
-bindsym $mod+l 				focus right
-bindsym $mod+Shift+l		move right 30
+bindsym $mod+l           focus right
+bindsym $mod+Shift+l     move right 30
 
-bindsym $mod+b 				bar mode toggle
+bindsym $mod+b           bar mode toggle
 
-bindsym $mod+Shift+b 		floating enable; exec --no-startup-id hover left
-bindsym $mod+Shift+n 		floating enable; exec --no-startup-id hover right
+bindsym $mod+Shift+b     floating enable; exec --no-startup-id hover left
+bindsym $mod+Shift+n     floating enable; exec --no-startup-id hover right
 
-bindsym $mod+Shift+s		sticky toggle
+bindsym $mod+Shift+s     sticky toggle
 
-bindsym $mod+Shift+c		move position center;
+bindsym $mod+Shift+c     move position center;
 
-bindsym $mod+p 				exec --no-startup-id pause
+bindsym $mod+p           exec --no-startup-id pause
 
-bindsym $mod+Shift+r		reload
+bindsym $mod+Shift+r     reload
 
 # #---Workspace Bindings---# #
 set $ws1 "1"
@@ -126,59 +129,65 @@ set $ws9 "9"
 set $ws10 "10"
 
 # switch to workspace
-bindsym $mod+1		workspace $ws1
-bindsym $mod+2		workspace $ws2
-bindsym $mod+3		workspace $ws3
-bindsym $mod+4		workspace $ws4
-bindsym $mod+5		workspace $ws5
-bindsym $mod+6		workspace $ws6
-bindsym $mod+7		workspace $ws7
-bindsym $mod+8		workspace $ws8
-bindsym $mod+9		workspace $ws9
-bindsym $mod+0		workspace $ws10
+bindsym $mod+1           workspace $ws1
+bindsym $mod+2           workspace $ws2
+bindsym $mod+3           workspace $ws3
+bindsym $mod+4           workspace $ws4
+bindsym $mod+5           workspace $ws5
+bindsym $mod+6           workspace $ws6
+bindsym $mod+7           workspace $ws7
+bindsym $mod+8           workspace $ws8
+bindsym $mod+9           workspace $ws9
+bindsym $mod+0           workspace $ws10
+
+bindsym XF86Launch5      workspace $ws1
+bindsym XF86Launch6      workspace $ws2
+bindsym XF86Launch7      workspace $ws3
+bindsym XF86Launch8      workspace $ws4
+bindsym XF86Launch9      workspace $ws5
 
 # move focused container to workspace
-bindsym $mod+Shift+1	move container to workspace $ws1
-bindsym $mod+Shift+2	move container to workspace $ws2
-bindsym $mod+Shift+3	move container to workspace $ws3
-bindsym $mod+Shift+4	move container to workspace $ws4
-bindsym $mod+Shift+5	move container to workspace $ws5
-bindsym $mod+Shift+6	move container to workspace $ws6
-bindsym $mod+Shift+7	move container to workspace $ws7
-bindsym $mod+Shift+8	move container to workspace $ws8
-bindsym $mod+Shift+9	move container to workspace $ws9
-bindsym $mod+Shift+0	move container to workspace $ws10
+bindsym $mod+Shift+1     move container to workspace $ws1
+bindsym $mod+Shift+2     move container to workspace $ws2
+bindsym $mod+Shift+3     move container to workspace $ws3
+bindsym $mod+Shift+4     move container to workspace $ws4
+bindsym $mod+Shift+5     move container to workspace $ws5
+bindsym $mod+Shift+6     move container to workspace $ws6
+bindsym $mod+Shift+7     move container to workspace $ws7
+bindsym $mod+Shift+8     move container to workspace $ws8
+bindsym $mod+Shift+9     move container to workspace $ws9
+bindsym $mod+Shift+0     move container to workspace $ws10
 
 # #---Arrow Keys---# #
-bindsym $mod+Left			focus left
-bindsym $mod+Down			focus down
-bindsym $mod+Up				focus up
-bindsym $mod+Right 			focus right
-bindsym $mod+Shift+Left		move left
-bindsym $mod+Shift+Down		move down
-bindsym $mod+Shift+Up		move up
-bindsym $mod+Shift+Right	move right
+bindsym $mod+Left        focus left
+bindsym $mod+Down        focus down
+bindsym $mod+Up          focus up
+bindsym $mod+Right       focus right
+bindsym $mod+Shift+Left  move left
+bindsym $mod+Shift+Down  move down
+bindsym $mod+Shift+Up    move up
+bindsym $mod+Shift+Right move right
 
 # #---Media Keys---# #
 # Volume keys
-bindsym XF86AudioRaiseVolume	exec --no-startup-id media volume up
-bindsym XF86AudioLowerVolume 	exec --no-startup-id media volume down
-bindsym XF86AudioMute 			exec --no-startup-id media volume toggle
+bindsym XF86AudioRaiseVolume exec --no-startup-id media volume up
+bindsym XF86AudioLowerVolume exec --no-startup-id media volume down
+bindsym XF86AudioMute        exec --no-startup-id media volume toggle
 
 # Brightness keys
-bindsym $mod+F3			 	exec --no-startup-id sudo light -A 5
-bindsym $mod+F2			 	exec --no-startup-id sudo light -U 5
+bindsym $mod+F3          exec --no-startup-id sudo light -A 5
+bindsym $mod+F2          exec --no-startup-id sudo light -U 5
 
 # Music control
-bindsym XF86AudioNext		exec --no-startup-id media next
-bindsym XF86AudioPrev		exec --no-startup-id media previous
-bindsym XF86AudioPlay		exec --no-startup-id media play-pause
-bindsym XF86AUdioPause		exec --no-startup-id media play-pause
+bindsym XF86AudioNext    exec --no-startup-id media next
+bindsym XF86AudioPrev    exec --no-startup-id media previous
+bindsym XF86AudioPlay    exec --no-startup-id media play-pause
+bindsym XF86AUdioPause   exec --no-startup-id media play-pause
 
 # #---Function Keys---# #
-bindsym $mod+F4		exec mount-drive
-bindsym $mod+F5		exec umount-drive
-bindsym Pause		exec backlight_toggle
+bindsym $mod+F4          exec mount-drive
+bindsym $mod+F5          exec umount-drive
+bindsym Pause            exec backlight_toggle
 
 # #---Input devices---# #
 input * {
