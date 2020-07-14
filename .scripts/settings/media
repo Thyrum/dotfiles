@@ -11,9 +11,9 @@ function helper {
 function volume {
 	case "$1" in
 		up)
-			amixer sset 'Master' 5%+ >/dev/null;;
+			amixer sset 'Master' 2%+ >/dev/null;;
 		down)
-			amixer sset 'Master' 5%- >/dev/null;;
+			amixer sset 'Master' 2%- >/dev/null;;
 		toggle)
 			amixer sset 'Master' toggle >/dev/null;;
 	esac
