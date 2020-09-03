@@ -36,6 +36,7 @@ nnoremap <leader>r :set relativenumber!<CR>
 
 " Jump to the next TODO replacement marker
 nnoremap <leader>; /<++><CR>c4l
+nnoremap <leader>: ?<++><CR>c4l
 
 " Edit/source the vimrc
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>

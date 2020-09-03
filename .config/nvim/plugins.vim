@@ -38,13 +38,21 @@ Plug 'tpope/vim-fugitive'
 Plug 'itchyny/lightline.vim'
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'morhetz/gruvbox'
 
 " Indentation
 Plug 'editorconfig/editorconfig-vim'
 Plug 'dpc/vim-smarttabs'
 
+" Undo's
+Plug 'AndrewRadev/undoquit.vim'
+Plug 'mbbill/undotree'
+
 " LaTeX
 Plug 'lervag/vimtex'
+
+" Fun
+Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
 
 call plug#end()
 
@@ -82,12 +90,11 @@ endif
 " Don't use editorconfig when editing fugitive buffers or going over ssh
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
-" Vimtex
-let g:vimtex_compiler_progname = 'nvr'
+" FZF
+nnoremap <C-p> :GFiles<CR>
 
-let g:tex_flavor='latex'
-let g:vimtex_view_method='zathura'
-let g:vimtex_quickfix_mode=0
-set concealcursor=
-set conceallevel=1
-let g:tex_conceal='abdmg'
+" vimtex
+let g:vimtex_view_method = 'zathura'
+let g:vimtex_compiler_latexmk = {
+			\ 'build_dir' : 'build',
+			\}

@@ -19,10 +19,9 @@ source $HOME/.config/nvim/bindings.vim
 "========
 augroup MyColors
 	autocmd!
-	autocmd ColorScheme * highlight ColorColumn ctermbg=235 guibg=#282924
-	autocmd ColorScheme * highlight LineNr ctermfg=238 cterm=none
-	autocmd ColorScheme * highlight CursorLineNr ctermfg=220 ctermbg=238 cterm=bold
-	autocmd ColorScheme * highlight CursorLine ctermbg=238 cterm=none
+	autocmd ColorScheme * highlight ColorColumn ctermbg=236 guibg=#32302f
+	autocmd ColorScheme * highlight CursorLineNr ctermfg=220 ctermbg=238 cterm=bold gui=bold
+	autocmd ColorScheme * highlight CursorLine ctermbg=238 cterm=none gui=none
 augroup END
 
 augroup CursorLine
@@ -31,12 +30,20 @@ augroup CursorLine
 	autocmd WinLeave * setlocal nocursorline
 augroup END
 
-" Hightlight everything after column 80
-let &colorcolumn="81,".join(range(121,9999),",")
+"augroup LuaHighlight
+"  au!
+"  au TextYankPost * lua vim.highlight.on_yank { higroup = "Substitute", timeout = 150, on_macro = true }
+"augroup END
+
+" Hightlight column 81
+set colorcolumn=81
 
 syntax enable
 filetype plugin indent on
-colorscheme ron
+
+set termguicolors
+set background=dark
+colorscheme gruvbox
 
 "===========================
 " Indentation and alignment
@@ -46,10 +53,9 @@ set softtabstop=0
 set shiftwidth=2
 set tabstop=2
 set smarttab 
+set smartindent
 set cindent
 set cinoptions=(0,u0,U0,g0,N-s,t0
-
-autocmd FileType text set cinoptions=u0,U0,g0,N-s,t0
 
 
 "====
@@ -60,6 +66,7 @@ set mouse=a
 set scrolloff=3
 set showbreak=↪\ 
 set hlsearch
+set incsearch
 set foldmethod=syntax
 set foldlevel=9999999
 set splitbelow splitright
@@ -67,9 +74,24 @@ set splitbelow splitright
 set listchars=tab:┆\ 
 set list
 
+"============================
+" Filetype specific settings
+"============================
+
+augroup FiletypeSettings
+	autocmd!
+
+	"autocmd FileType text set cinoptions=u0,U0,g0,N-s,t0
+	autocmd FileType text setlocal nocindent
+	autocmd FileType text setlocal expandtab
+	autocmd FileType text setlocal textwidth=80
+augroup END
+
 "======
 " Misc
 "======
 set clipboard=unnamedplus
 set nomodeline
 "autocmd BufWritePost *.tex silent exec "!pdflatex %"
+"
+let g:EditorConfig_verbose = 1
