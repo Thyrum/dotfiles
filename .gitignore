@@ -1,3 +1,9 @@
-/nvim/.config/nvim/plugged
-/nvim/.config/nvim/autoload
+/nvim/.config/nvim/*
+!/nvim/.config/nvim/init.vim
+!/nvim/.config/nvim/plugins.vim
+!/nvim/.config/nvim/bindings.vim
+!/nvim/.config/nvim/syntax/RC300.vim
+!/nvim/.config/nvim/filetype.vim
+!/nvim/.config/nvim/ycm_extra_conf.py
+
 /zsh/.config/zsh/.zcompdump
