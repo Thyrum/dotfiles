@@ -1,0 +1,12 @@
+#!/bin/sh
+
+if swaymsg -t get_inputs | jq '.[0].xkb_active_layout_name' | grep -e "Workman" >/dev/null
+then
+	notify-send "Switched to QWERTY"
+	swaymsg input "*" xkb_layout "us"
+	swaymsg input "*" xkb_variant "euro"
+else
+	notify-send "Switched to WORKMAN"
+	swaymsg input "*" xkb_layout "us"
+	swaymsg input "*" xkb_variant "workman"
+fi

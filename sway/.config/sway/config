@@ -78,8 +78,8 @@ bindsym $mod+Shift+w     exec --no-startup-id $BROWSER
 bindsym $mod+Shift+t     split toggle
 bindsym $mod+t           exec --no-startup-id ddspawn tmuxdd
 bindsym $mod+m           exec --no-startup-id ddspawn cmusdd
-bindsym $mod+c           exec --no-startup-id ddspawn bc
-bindsym XF86Calculator   exec --no-startup-id ddspawn bc
+bindsym $mod+c           exec --no-startup-id ddspawn bcdd
+bindsym XF86Calculator   exec --no-startup-id ddspawn bcdd
 
 bindsym $mod+Shift+u     resize shrink width 10 px or 10 ppt
 bindsym $mod+Shift+i     resize grow height 10 px or 10 ppt
@@ -175,8 +175,10 @@ bindsym XF86AudioLowerVolume exec --no-startup-id media volume down
 bindsym XF86AudioMute        exec --no-startup-id media volume toggle
 
 # Brightness keys
-bindsym $mod+F3          exec --no-startup-id sudo light -A 5
-bindsym $mod+F2          exec --no-startup-id sudo light -U 5
+bindsym $mod+F3               exec --no-startup-id sudo light -A 5
+bindsym $mod+F2               exec --no-startup-id sudo light -U 5
+bindsym XF86MonBrightnessUp   exec --no-startup-id sudo light -A 5
+bindsym XF86MonBrightnessDown exec --no-startup-id sudo light -U 5
 
 # Music control
 bindsym XF86AudioNext    exec --no-startup-id media next
@@ -185,12 +187,15 @@ bindsym XF86AudioPlay    exec --no-startup-id media play-pause
 bindsym XF86AUdioPause   exec --no-startup-id media play-pause
 
 # #---Function Keys---# #
+bindsym $mod+F1          exec switchkeyboard
 bindsym $mod+F4          exec mount-drive
 bindsym $mod+F5          exec umount-drive
 bindsym Pause            exec backlight_toggle
 
 # #---Input devices---# #
 input * {
+	#xkb_layout "us"
+	#xkb_variant "workman"
 	xkb_options caps:swapescape
 	repeat_delay 300
 	repeat_rate 40

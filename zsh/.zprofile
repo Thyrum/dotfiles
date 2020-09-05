@@ -9,7 +9,7 @@
 # Github:     https://github.com/Thyrum/dotfiles
 # Maintainer: Thyrum (Aron de Jong)
 
-export PATH=$PATH:$HOME/.scripts/bin
+export PATH=$PATH:$HOME/.scripts/bin:$HOME/.local/bin
 
 # default programs
 export TERMINAL=alacritty
@@ -24,6 +24,9 @@ export XDG_CONFIG_HOME=$HOME/.config
 
 # ~/ Clean-up:
 export ZDOTDIR="$HOME/.config/zsh"
+export BC_ENV_ARGS="$HOME/.config/bc.conf"
+
+setopt autocd
 
 if [ "$(tty)" = "/dev/tty1" ]; then
 	exec sway

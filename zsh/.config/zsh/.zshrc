@@ -14,7 +14,7 @@
 # Enable colors and change prompt:
 autoload -U colors && colors
 
-source $DOTFILES/.config/git-prompt.sh
+source $HOME/.config/git-prompt.sh
 setopt PROMPT_SUBST ; PS1='%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}$(echo "%M" | sed -e "s/\..*//g") %{$fg[magenta]%}%c%{$fg[red]%}]$(__git_ps1 " %%{$fg[cyan]%%}(%s)")%{$reset_color%}%(!.#.\$)%b '
 
 # History in cache directory:

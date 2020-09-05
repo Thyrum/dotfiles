@@ -1,0 +1,9 @@
+#!/bin/sh
+
+[[ $1 =~ ^[0-9]+$ ]] || exit
+
+pactl list short sink-inputs \
+	| cut -f 1 \
+	| xargs -I '{}' pactl move-sink-input '{}' $1 \
+
+pactl set-default-sink $1

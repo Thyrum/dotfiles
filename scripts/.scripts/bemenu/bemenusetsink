@@ -1,0 +1,14 @@
+#!/bin/sh
+
+pactl list sinks \
+	| grep -e "Sink #" -e device.description \
+	| sed -e 's:Sink #::' -e 's:^.*device\.description = ::' \
+	| sed -e 'N;s/\n/ /' \
+	| bemenu -l 10 \
+	| cut -f 1 \
+	| xargs setsink
+
+#pactl list short sinks \
+#	| bemenu -l 10 \
+#	| cut -f 1 \
+#	| xargs setsink
