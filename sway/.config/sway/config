@@ -39,7 +39,7 @@ for_window [title="dropdown_*"]            move position center
 
 # #---Start External Scripts---# #
 # Set the background
-output "*" background "$DOTFILES/wallpaper/$(ls $DOTFILES/wallpaper/ | shuf -n 1)" fill
+output "*" background "$HOME/wallpaper/$(ls $HOME/wallpaper/ | shuf -n 1)" fill
 output HDMI-A-2 pos 0 0
 output eDP-1 pos 1680 0
 # Start picom
