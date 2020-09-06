@@ -98,6 +98,4 @@ augroup END
 "======
 set clipboard=unnamedplus
 set nomodeline
-"autocmd BufWritePost *.tex silent exec "!pdflatex %"
-"
 let g:EditorConfig_verbose = 1
