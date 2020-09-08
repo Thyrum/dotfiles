@@ -93,6 +93,7 @@ augroup FiletypeSettings
 	autocmd FileType text setlocal nocindent
 	autocmd FileType text setlocal expandtab
 	autocmd FileType text setlocal textwidth=80
+	autocmd FileType tex  setlocal expandtab
 augroup END
 
 "======
