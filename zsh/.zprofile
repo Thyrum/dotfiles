@@ -19,7 +19,7 @@ export MOZ_ENABLE_WAYLAND=1
 
 # My directories
 export UNI=$HOME/uni
-export DOTFILES=$HOME/dotfiles
+export DOTFILES=$HOME/.dotfiles
 export XDG_CONFIG_HOME=$HOME/.config
 
 # ~/ Clean-up:
