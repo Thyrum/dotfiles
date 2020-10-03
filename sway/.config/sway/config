@@ -37,6 +37,10 @@ for_window [title="dropdown_dropdowncalc"] resize set 800 300
 for_window [title="dropdown_tmuxdd"]       border pixel 3
 for_window [title="dropdown_*"]            move position center
 
+# #---Other Window Properties---# #
+for_window [title="dropdown_*"]            opacity 0.8
+for_window [app_id="Alacritty"]            opacity 0.9
+
 # #---Start External Scripts---# #
 # Set the background
 output "*" background "$HOME/wallpaper/$(ls $HOME/wallpaper/ | shuf -n 1)" fill
