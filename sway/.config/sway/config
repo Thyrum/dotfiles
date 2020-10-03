@@ -40,16 +40,16 @@ for_window [title="dropdown_*"]            move position center
 # #---Start External Scripts---# #
 # Set the background
 output "*" background "$HOME/wallpaper/$(ls $HOME/wallpaper/ | shuf -n 1)" fill
-output HDMI-A-2 pos 0 0
-output eDP-1 pos 1680 0
-# Start picom
-#exec --no-startup-id picom
+exec kanshi
+#output HDMI-A-2 pos 0 0
+#output eDP-1 pos 1680 0
+
 # Start notification daemon
 exec mako
 
 bar {
 		font pango:mono, Icons 10
-        status_command i3blocks
+		status_command i3blocks
 		position top
 		mode dock
 		modifier none

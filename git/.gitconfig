@@ -16,8 +16,8 @@
 	default = simple
 	recurseSubmodules = check
 [core]
-	editor       = vim
-	excludesfile = /vol/home/s2120437/.gitignore_global
+	editor       = nvim
+	excludesfile = $HOME/.gitignore_global
 [alias]
 	last  = log -1 HEAD
 	graph = log --oneline --graph

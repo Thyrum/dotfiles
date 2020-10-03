@@ -1,0 +1,8 @@
+profile {
+	output eDP-1 enable
+}
+
+profile {
+	output eDP-1 enable position 1680,0
+	output "Samsung Electric Company SyncMaster H1AK500000" enable position 0,0
+}
