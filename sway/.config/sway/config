@@ -12,24 +12,42 @@
 # First make sure "sudo light" can be executed without a password
 # Otherwise you will not be able to change the brightness
 
-#---Basic Definitions---# #
-#for_window [class="^.*"] border pixel 2
-hide_edge_borders none
-default_floating_border pixel 2
+# #---Variables---# #
+set $mod Mod4
+set $term alacritty
+set $menu bemenu-run
+set $screenshot grim $HOME/Pictures/screenshots/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png
+set $screenclip slurp | grim -g - $HOME/Pictures/screenshots/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png
+set $background $HOME/wallpaper/$(ls $HOME/wallpaper/ | shuf -n 1)
+
+# #---Workspaces---# #
+set $ws1  "1"
+set $ws2  "2"
+set $ws3  "3"
+set $ws4  "4"
+set $ws5  "5"
+set $ws6  "6"
+set $ws7  "7"
+set $ws8  "8"
+set $ws9  "9"
+set $ws0  "10"
+
+# #---window borders---# #
+hide_edge_borders smart
 default_border pixel 2
+default_floating_border normal
 mouse_warping none
 
+smart_gaps on
 gaps inner 4
 gaps outer 4
-set $term --no-startup-id $TERMINAL
-set $mod Mod4
 
 # When holding $mod, move floating windows with mouse
 floating_modifier $mod normal
 
-# #---Dropdown Windows---# #
-# General dropdown window traits. The order can matter
-#for_window [app_id="dropdown_*"] floating enable; move scratchpad; sticky enable; scratchpad show;
+# #---Window properties---# #
+for_window [app_id="Alacritty"]            opacity 0.9
+for_window [title="dropdown_*"]            opacity 0.8
 for_window [title="dropdown_*"]            floating enable
 for_window [title="dropdown_*"]            sticky enable
 for_window [title="dropdown_tmuxdd"]       resize set 625 450
@@ -37,102 +55,116 @@ for_window [title="dropdown_dropdowncalc"] resize set 800 300
 for_window [title="dropdown_tmuxdd"]       border pixel 3
 for_window [title="dropdown_*"]            move position center
 
-# #---Other Window Properties---# #
-for_window [title="dropdown_*"]            opacity 0.8
-for_window [app_id="Alacritty"]            opacity 0.9
-
-# #---Start External Scripts---# #
-# Set the background
-output "*" background "$HOME/wallpaper/$(ls $HOME/wallpaper/ | shuf -n 1)" fill
+# #---Autostart---# #
 exec kanshi
-#output HDMI-A-2 pos 0 0
-#output eDP-1 pos 1680 0
-
-# Start notification daemon
 exec mako
+exec firefox
 
-bar {
-		font pango:mono, Icons 10
-		status_command i3blocks
-		position top
-		mode dock
-		modifier none
+# #---Input configuration---# #
+input * {
+	xkb_options caps:swapescape
+	repeat_delay 300
+	repeat_rate 40
+}
+input "2:14:ETPS/2_Elantech_Touchpad" {
+	tap enabled
+	natural_scroll enabled
 }
 
-# #---Basic Bindings---# #
-bindsym $mod+Return exec $term
+# #---Output configuration---# #
+output "*" background "$background" fill
 
-bindsym $mod+Shift+space floating toggle
-# Change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+# #---Default workspaces---# #
+assign [class="^discord$"] $ws3
+assign [app_id="^firefox$"] $ws1
 
-bindsym $mod+Escape      workspace prev
-bindsym $mod+Shift+e     exec --no-startup-id prompt 'Are you sure?' 'swaymsg exit'
-
-# #---Letter Key Bindings---# #
-bindsym $mod+q           [con_id="__focused__"] kill
-bindsym $mod+Shift+q     [con_id="__focused__"] kill -9
+# #---Shortcuts---# #
+bindsym $mod+Return      exec $term
+bindsym $mod+Shift+w     exec firefox
+bindsym $mod+Print       exec $screenshot
+bindsym $mod+Shift+Print exec $screenclip
+bindsym $mod+d           exec $menu
 
 bindsym $mod+Ctrl+u      exec bemenuunicode
 bindsym $mod+u           exec $term -e bemenuuni
-
 bindsym $mod+w           exec $term -e nmtui
-bindsym $mod+Shift+w     exec --no-startup-id $BROWSER
 
-bindsym $mod+Shift+t     split toggle
+bindsym $mod+Shift+e     exec prompt 'Are you sure?' 'swaymsg exit'
+bindsym $mod+Shift+r     reload
+bindsym $mod+b           splith
+bindsym $mod+v           splitv
+
+bindsym $mod+F1          exec switchkeyboard
+bindsym $mod+F4          exec mount-drive
+bindsym $mod+F5          exec umount-drive
+bindsym Pause            exec backlight_toggle
+
+bindsym $mod+q           [con_id="__focused__"] kill
+bindsym $mod+Shift+q     [con_id="__focused__"] kill -9
+
+bindsym $mod+f           fullscreen toggle
+bindsym $mod+g           fullscreen toggle global
+bindsym $mod+Shift+s     sticky toggle
+
+# Dropdown stuff
 bindsym $mod+t           exec --no-startup-id ddspawn tmuxdd
 bindsym $mod+m           exec --no-startup-id ddspawn cmusdd
 bindsym $mod+c           exec --no-startup-id ddspawn bcdd
 bindsym XF86Calculator   exec --no-startup-id ddspawn bcdd
 
-bindsym $mod+Shift+u     resize shrink width 10 px or 10 ppt
-bindsym $mod+Shift+i     resize grow height 10 px or 10 ppt
-bindsym $mod+Shift+o     resize shrink height 10 px or 10 ppt
-bindsym $mod+Shift+p     resize grow width 10 px or 10 ppt
+# #---Multimedia---# #
+bindsym XF86AudioRaiseVolume exec media volume up
+bindsym XF86AudioLowerVolume exec media volume down
+bindsym XF86AudioMute        exec media volume toggle
 
-bindsym $mod+d           exec --no-startup-id bemenu-run
+bindsym XF86AudioNext    exec media next
+bindsym XF86AudioPrev    exec media previous
+bindsym XF86AudioPlay    exec media play-pause
+bindsym XF86AUdioPause   exec media play-pause
 
-bindsym $mod+f           fullscreen toggle
-bindsym $mod+g           fullscreen toggle global
+bindsym $mod+F3               exec brightnessctl set +5%
+bindsym $mod+F2               exec brightnessctl set 5%-
+bindsym XF86MonBrightnessUp   exec brightnessctl set +5%
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+
+# #---Change focus---# #
+bindsym $mod+Left        focus left
+bindsym $mod+Down        focus down
+bindsym $mod+Up          focus up
+bindsym $mod+Right       focus right
 
 bindsym $mod+h           focus left
-bindsym $mod+Shift+h     move left 30
-
 bindsym $mod+j           focus down
-bindsym $mod+Shift+j     move down 30
-
 bindsym $mod+k           focus up
-bindsym $mod+Shift+k     move up 30
-
 bindsym $mod+l           focus right
+
+# #---Move focused window---# #
+bindsym $mod+Shift+Left  move left  30
+bindsym $mod+Shift+Down  move down  30
+bindsym $mod+Shift+Up    move up    30
+bindsym $mod+Shift+Right move right 30
+
+bindsym $mod+Shift+h     move left  30
+bindsym $mod+Shift+j     move down  30
+bindsym $mod+Shift+k     move up    30
 bindsym $mod+Shift+l     move right 30
 
-bindsym $mod+b           bar mode toggle
+# #---Resize focused window---# #
+bindsym $mod+Shift+u     resize shrink width  10 px or 10 ppt
+bindsym $mod+Shift+i     resize grow   height 10 px or 10 ppt
+bindsym $mod+Shift+o     resize shrink height 10 px or 10 ppt
+bindsym $mod+Shift+p     resize grow   width  10 px or 10 ppt
 
-bindsym $mod+Shift+b     floating enable; exec --no-startup-id hover left
-bindsym $mod+Shift+n     floating enable; exec --no-startup-id hover right
+# #--Manage floating windows---# #
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
 
-bindsym $mod+Shift+s     sticky toggle
+bindsym $mod+Shift+b     floating enable; exec hover left
+bindsym $mod+Shift+n     floating enable; exec hover right
 
 bindsym $mod+Shift+c     move position center;
 
-bindsym $mod+p           exec --no-startup-id pause
-
-bindsym $mod+Shift+r     reload
-
-# #---Workspace Bindings---# #
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
-
-# switch to workspace
+# #---Switch to workspace---# #
 bindsym $mod+1           workspace $ws1
 bindsym $mod+2           workspace $ws2
 bindsym $mod+3           workspace $ws3
@@ -150,7 +182,7 @@ bindsym XF86Launch7      workspace $ws3
 bindsym XF86Launch8      workspace $ws4
 bindsym XF86Launch9      workspace $ws5
 
-# move focused container to workspace
+# #---Move focused container to workspace---# #
 bindsym $mod+Shift+1     move container to workspace $ws1
 bindsym $mod+Shift+2     move container to workspace $ws2
 bindsym $mod+Shift+3     move container to workspace $ws3
@@ -160,52 +192,25 @@ bindsym $mod+Shift+6     move container to workspace $ws6
 bindsym $mod+Shift+7     move container to workspace $ws7
 bindsym $mod+Shift+8     move container to workspace $ws8
 bindsym $mod+Shift+9     move container to workspace $ws9
-bindsym $mod+Shift+0     move container to workspace $ws10
+bindsym $mod+Shift+0     move container to workspace $ws0
 
-# #---Arrow Keys---# #
-bindsym $mod+Left        focus left
-bindsym $mod+Down        focus down
-bindsym $mod+Up          focus up
-bindsym $mod+Right       focus right
-bindsym $mod+Shift+Left  move left
-bindsym $mod+Shift+Down  move down
-bindsym $mod+Shift+Up    move up
-bindsym $mod+Shift+Right move right
+# #---Move workspace to monitor---# #
+bindsym $mod+Ctrl+Left   move workspace to output left
+bindsym $mod+Ctrl+Down   move workspace to output down
+bindsym $mod+Ctrl+Up     move workspace to output up
+bindsym $mod+Ctrl+Right  move workspace to output right
 
-# #---Media Keys---# #
-# Volume keys
-bindsym XF86AudioRaiseVolume exec --no-startup-id media volume up
-bindsym XF86AudioLowerVolume exec --no-startup-id media volume down
-bindsym XF86AudioMute        exec --no-startup-id media volume toggle
+bindsym $mod+Ctrl+h      move workspace to output left
+bindsym $mod+Ctrl+j      move workspace to output down
+bindsym $mod+Ctrl+k      move workspace to output up
+bindsym $mod+Ctrl+l      move workspace to output right
 
-# Brightness keys
-bindsym $mod+F3               exec --no-startup-id sudo light -A 5
-bindsym $mod+F2               exec --no-startup-id sudo light -U 5
-bindsym XF86MonBrightnessUp   exec --no-startup-id sudo light -A 5
-bindsym XF86MonBrightnessDown exec --no-startup-id sudo light -U 5
-
-# Music control
-bindsym XF86AudioNext    exec --no-startup-id media next
-bindsym XF86AudioPrev    exec --no-startup-id media previous
-bindsym XF86AudioPlay    exec --no-startup-id media play-pause
-bindsym XF86AUdioPause   exec --no-startup-id media play-pause
-
-# #---Function Keys---# #
-bindsym $mod+F1          exec switchkeyboard
-bindsym $mod+F4          exec mount-drive
-bindsym $mod+F5          exec umount-drive
-bindsym Pause            exec backlight_toggle
-
-# #---Input devices---# #
-input * {
-	#xkb_layout "us"
-	#xkb_variant "workman"
-	xkb_options caps:swapescape
-	repeat_delay 300
-	repeat_rate 40
+# #---Status bar---# #
+bar {
+	font pango:mono, Icons 10
+	status_command i3blocks
+	position top
+	mode dock
+	modifier none
 }
-input "2:14:ETPS/2_Elantech_Touchpad" {
-	tap enabled
-	natural_scroll enabled
-}
-#setxkbmap -option caps:swapescape
+
