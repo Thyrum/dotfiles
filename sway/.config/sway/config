@@ -19,6 +19,7 @@ set $menu bemenu-run
 set $screenshot grim $HOME/Pictures/screenshots/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png
 set $screenclip slurp | grim -g - $HOME/Pictures/screenshots/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png
 set $background $HOME/wallpaper/$(ls $HOME/wallpaper/ | shuf -n 1)
+set $lock swaylock -f -c 000000
 
 # #---Workspaces---# #
 set $ws1  "1"
@@ -204,6 +205,13 @@ bindsym $mod+Ctrl+h      move workspace to output left
 bindsym $mod+Ctrl+j      move workspace to output down
 bindsym $mod+Ctrl+k      move workspace to output up
 bindsym $mod+Ctrl+l      move workspace to output right
+
+# #---Idle configuration---# #
+exec swayidle -w\
+	     timeout 300 "$lock" \
+	     timeout 600 'if pgrep swaylock; then swaymsg "output * dpms off"; fi' \
+	     resume 'swaymsg "output * dpms on"' \
+	     before-sleep "$lock"
 
 # #---Status bar---# #
 bar {
