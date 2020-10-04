@@ -40,7 +40,7 @@ mouse_warping none
 
 smart_gaps on
 gaps inner 4
-gaps outer 4
+gaps outer 0
 
 # When holding $mod, move floating windows with mouse
 floating_modifier $mod normal
