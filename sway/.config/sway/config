@@ -19,7 +19,24 @@ set $menu bemenu-run
 set $screenshot grim $HOME/Pictures/screenshots/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png
 set $screenclip slurp | grim -g - $HOME/Pictures/screenshots/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png
 set $background $HOME/wallpaper/$(ls $HOME/wallpaper/ | shuf -n 1)
-set $lock swaylock -f -c 000000
+
+# Lock using swaylock-effects, for normal swaylock, use the second line
+set $lock swaylock \
+	--screenshots \
+	--clock \
+	--indicator \
+	--indicator-radius 100 \
+	--indicator-thickness 7 \
+	--effect-blur 7x5 \
+	--effect-vignette 0.5:0.5 \
+	--ring-color bb00cc \
+	--key-hl-color 880033 \
+	--line-color 00000000 \
+	--inside-color 00000088 \
+	--separator-color 00000000 \
+	--grace 5 \
+	--fade-in 0.2
+#set $lock swaylock -f -c 000000
 
 # #---Workspaces---# #
 set $ws1  "1"
