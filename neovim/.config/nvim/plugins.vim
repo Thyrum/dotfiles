@@ -44,7 +44,7 @@ Plug 'Valloric/YouCompleteMe'
 Plug 'tpope/vim-fugitive'
 
 " Visuals
-"Plug 'thaerkh/vim-indentguides'
+Plug 'tikhomirov/vim-glsl'
 Plug 'itchyny/lightline.vim'
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -109,3 +109,6 @@ let g:vimtex_view_method = 'zathura'
 let g:vimtex_compiler_latexmk = {
 			\ 'build_dir' : 'build',
 			\}
+
+" vim-glsl
+autocmd! BufNewFile,BufRead *.vs,*.fs set ft=glsl
