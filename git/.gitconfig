@@ -31,3 +31,5 @@
 	submoduleSummary = true
 [submodule]
 	recurse = true
+[pull]
+	ff = only
