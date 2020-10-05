@@ -1,15 +1,16 @@
 ignore-empty-password
+show-keyboard-layout
 
 clock
 timestr=%R
 datestr=%A%e %B
 
-fade-in=0.2
+fade-in=1
 grace=5
 
 screenshots
 
-effect-blur=7x5
+effect-pixelate=8
 effect-vignette=0.5:0.5
 
 indicator
