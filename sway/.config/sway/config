@@ -111,6 +111,8 @@ bindsym $mod+Shift+e     exec prompt 'Are you sure?' 'swaymsg exit'
 bindsym $mod+Shift+r     reload
 bindsym $mod+b           splith
 bindsym $mod+v           splitv
+# lock the system
+bindsym $mod+p           exec pkill -USR1 swayidle
 
 bindsym $mod+F1          exec switchkeyboard
 bindsym $mod+F4          exec mount-drive
