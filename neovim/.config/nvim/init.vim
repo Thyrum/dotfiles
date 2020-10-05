@@ -92,7 +92,7 @@ augroup FiletypeSettings
 	"autocmd FileType text set cinoptions=u0,U0,g0,N-s,t0
 	autocmd FileType text setlocal nocindent
 	autocmd FileType text setlocal expandtab
-	autocmd FileType text setlocal textwidth=80
+	autocmd FileType text,markdown setlocal textwidth=80
 	autocmd FileType tex  setlocal expandtab
 augroup END
 
