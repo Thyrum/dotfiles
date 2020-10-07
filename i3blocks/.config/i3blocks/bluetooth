@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if systemctl status bluetooth | grep inactive >/dev/null; then
+if bluetoothctl show | grep -e "Powered: yes" >/dev/null; then
 	status="off"
 else
 	status="on"
@@ -8,7 +8,7 @@ fi
 
 if [[ "${BLOCK_BUTTON}" == "1" ]]; then
 	if [[ "$status" == "on" ]]; then
-		i3-msg -q exec blueman-manager >/dev/null
+		swaymsg exec blueman-manager
 	fi
 fi
 

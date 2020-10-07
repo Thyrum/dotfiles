@@ -1,0 +1,6 @@
+#!/bin/sh
+SONG="$(playerctl --ignore-player firefox --format '{{title}} - {{artist}}' metadata)"
+
+echo "$SONG"
+echo "$SONG"
+echo "#FFFF88"
