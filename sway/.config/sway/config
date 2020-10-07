@@ -78,10 +78,6 @@ input "2:14:ETPS/2_Elantech_Touchpad" {
 # #---Output configuration---# #
 output "*" background "$background" fill
 
-# #---Default workspaces---# #
-assign [class="^discord$"] $ws3
-assign [app_id="^firefox$"] $ws1
-
 # #---Shortcuts---# #
 bindsym $mod+Return      exec $term
 bindsym $mod+Shift+w     exec firefox
