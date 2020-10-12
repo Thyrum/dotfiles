@@ -71,6 +71,11 @@ min_width=CPU 100.00%
 #label=LOAD
 #interval=10
 
+[updates]
+label=🔼
+interval=3600
+command=checkupdates | wc -l
+
 [time]
 label=📅
 command=date '+%a %d %b %Y, %H:%M'
