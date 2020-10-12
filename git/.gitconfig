@@ -9,15 +9,16 @@
 # Github:     https://github.com/Thyrum/dotfiles
 # Maintainer: Thyrum (Aron de Jong)
 
-[user]
-	name  = Aron de Jong
-	email = a.de.jong.6@umail.leidenuniv.nl
+[includeIf "gitdir:~/uni/"]
+	path = .gitconfig-uni
+[includeIf "gitdir:~/dev/"]
+	path = .gitconfig-personal
 [push]
 	default = simple
 	recurseSubmodules = check
 [core]
 	editor       = nvim
-	excludesfile = $HOME/.gitignore_global
+	excludesfile = $HOME/.gitignore-global
 [alias]
 	last  = log -1 HEAD
 	graph = log --oneline --graph
