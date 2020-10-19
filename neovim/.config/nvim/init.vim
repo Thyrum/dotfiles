@@ -63,7 +63,7 @@ set tabstop=2
 set smarttab 
 set smartindent
 set cindent
-set cinoptions=(0,u0,U0,g0,N-s,t0
+set cinoptions=(s,us,Us,m1,g0,N-s,t0
 
 
 "====
