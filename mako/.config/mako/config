@@ -10,3 +10,17 @@
 # Maintainer: Thyrum (Aron de Jong)
 
 default-timeout=5000
+border-size=1
+border-radius=5
+
+# Layer set to overlay to display notifications over fullscreen windows
+layer=overlay
+background-color=#285577F0
+
+[urgency=low]
+border-color=#FFFF00
+background-color=#888800F0
+
+[urgency=high]
+border-color=#FF0000
+background-color=#880000F0
