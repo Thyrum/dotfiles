@@ -1,5 +1,5 @@
 #!/bin/sh
-SONG="$(playerctl --ignore-player firefox --format '{{title}} - {{artist}}' metadata)"
+SONG="$(playerctl --player=cmus,%any,firefox --format '{{title}} - {{artist}}' metadata)"
 
 echo "$SONG"
 echo "$SONG"
