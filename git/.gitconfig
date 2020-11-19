@@ -9,10 +9,10 @@
 # Github:     https://github.com/Thyrum/dotfiles
 # Maintainer: Thyrum (Aron de Jong)
 
-[includeIf "gitdir:~/uni/"]
-	path = .gitconfig-uni
-[includeIf "gitdir:~/dev/"]
-	path = .gitconfig-personal
+[includeIf "gitdir:/mnt/DATA/linux/uni/"]
+	path = ~/.gitconfig-uni
+[includeIf "gitdir:/mnt/DATA/linux/dev/"]
+	path = ~/.gitconfig-personal
 [push]
 	default = simple
 	recurseSubmodules = check
