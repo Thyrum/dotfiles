@@ -37,8 +37,10 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 " Auto-completion
-Plug 'rdnetto/YCM-Generator', {'branch': 'stable'}
-Plug 'Valloric/YouCompleteMe'
+if has('python3')
+	Plug 'rdnetto/YCM-Generator', {'branch': 'stable'}
+	Plug 'Valloric/YouCompleteMe'
+endif
 
 " git
 Plug 'tpope/vim-fugitive'
@@ -64,7 +66,9 @@ Plug 'mbbill/undotree'
 
 " LaTeX
 Plug 'lervag/vimtex'
-Plug 'sirver/ultisnips'
+if has('python3')
+	Plug 'sirver/ultisnips'
+endif
 
 " Easy surrounding with quotes
 Plug 'tpope/vim-surround'
