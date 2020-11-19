@@ -3,7 +3,7 @@ show-keyboard-layout
 
 clock
 timestr=%R
-datestr=%A%e %B
+datestr=%A %e %B
 
 fade-in=1
 grace=5
