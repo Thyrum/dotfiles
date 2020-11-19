@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #   ________
 #  /_  __/ /_  __  _________  ______ ___
 #   / / / __ \/ / / / ___/ / / / __ `__ \
@@ -17,19 +17,20 @@ alias rmdir=rmdirtrash
 alias sudo="sudo "
 
 # Uni commands
-alias sshUni="ssh -t -A -X s2120437@sshgw.leidenuniv.nl ssh -X huisuil01"
+alias sshUni="TERM=screen-256color ssh -t -A -X s2120437@sshgw.leidenuniv.nl ssh -X huisuil01"
 alias sshfsUni="sshfs s2120437@sshgw.leidenuniv.nl:/vol/home/s2120437 /mnt/aron/uni -o transform_symlinks"
 alias wgetUni="wget --user=s2120437 --ask-password"
 
 # General settings
 alias vim="nvim"
 alias sp="sudo pacman"
-alias cp="cp -i"		# Confirm overwriting
-alias df="df -h"		# Human readable sizes
-alias free="free -m"	# show sizes in MB
+alias cp="cp -i"      # Confirm overwriting
+alias df="df -h"      # Human readable sizes
+alias free="free -m"  # show sizes in MB
 alias more=less
 alias gs="git status"
 alias g="git"
+alias make="make -j"  # always run make multithreaded
 
 # Enable color by default
 alias ls="ls --color=auto"
