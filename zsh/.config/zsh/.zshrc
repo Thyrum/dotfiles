@@ -112,7 +112,7 @@ bindkey '^e' edit-command-line
 
 
 # Load zsh-syntax-highlighting; should be last.
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
-source /vol/home/s2120437/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+[ -n "$DOTFILES" ] && source $DOTFILES/zsh/.config/zsh/plugins/zsh-vim-mode/zsh-vim-mode.plugin.zsh
+[ -n "$DOTFILES" ] && source $DOTFILES/zsh/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 [ -n "$startup" ] && exec $startup
