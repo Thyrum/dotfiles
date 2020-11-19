@@ -25,13 +25,13 @@ case "$1" in
 		[ -z "$2" ] && helper
 		volume $2;;
 	play-pause)
-		playerctl play-pause;;
+		playerctl --player=cmus,%any,firefox play-pause;;
 	pause)
-		playerctl pause;;
+		playerctl --player=cmus,%any,firefox pause;;
 	play)
-		playerctl play;;
+		playerctl --player=cmus,%any,firefox play;;
 	next)
-		playerctl next;;
+		playerctl --player=cmus,%any,firefox next;;
 	previous)
-		playerctl previous;;
+		playerctl --player=cmus,%any,firefox previous;;
 esac

@@ -1,0 +1,37 @@
+#!/bin/sh
+
+print_usage() {
+	>&2 echo "Usage:"
+	>&2 echo "  $0 [-s|--selection] [-h|--help] [filename.png]"
+	>&2 echo ""
+	>&2 echo "Options:"
+	>&2 echo "  -s, --selection  Create screenshot of a screen selection (using slurp)"
+	>&2 echo "  -h, --help       Show this help"
+
+	exit 1
+}
+
+selection=false
+
+unset $file
+
+for opt in $@; do
+	case "$opt" in
+		"-h" | "--help")      print_usage ;;
+		"-s" | "--selection") selection=true ;;
+		-*)                   >&2 echo "Unknown option: '$opt'"; exit 1 ;;
+		*)                    [[ -z $file ]] && file="$opt" || print_usage ;;
+	esac
+done
+
+[[ -z $file ]] && file="$HOME/Pictures/screenshots/scrn-$(date +'%Y-%m-%d-%H-%M-%S').png"
+
+
+if [ "$selection" = true ]
+then
+	slurp | grim -g - "$file"
+else
+	grim "$file"
+fi
+
+cat "$file" | wl-copy --type image/png 

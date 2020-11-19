@@ -14,8 +14,8 @@ newheight=`echo $focused_window | jq '.window_rect.height'`
 vertical=$(expr $screenheight - $newheight)
 
 case "$1" in
-	left) horizontal=`echo "$focused_screen" | jq '.rect.x'`;;
-	right) horizontal=$(expr $screenwidth - $newwidth);;
+	left)  horizontal=`echo "$focused_screen" | jq '.rect.x'`;;
+	right) horizontal=`expr $screenwidth - $newwidth`;;
 esac
 
 echo "height: $newheight"
