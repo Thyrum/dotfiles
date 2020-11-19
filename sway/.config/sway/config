@@ -16,8 +16,8 @@
 set $mod Mod4
 set $term alacritty
 set $menu bemenu-run
-set $screenshot grim $HOME/Pictures/screenshots/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png
-set $screenclip slurp | grim -g - $HOME/Pictures/screenshots/scrn-$(date +"%Y-%m-%d-%H-%M-%S").png
+set $screenshot screenclip
+set $screenclip screenclip -s
 set $background $HOME/wallpaper/$(ls $HOME/wallpaper/ | shuf -n 1)
 
 # Lock using swaylock-effects, for normal swaylock, use the second line
@@ -52,10 +52,12 @@ floating_modifier $mod normal
 # #---Window properties---# #
 for_window [app_id="Alacritty"]            opacity 0.9
 for_window [title="dropdown_*"]            opacity 0.8
+for_window [title="dropdown_nmtui*"]       opacity 1
+
 for_window [title="dropdown_*"]            floating enable
 for_window [title="dropdown_*"]            sticky enable
-for_window [title="dropdown_tmuxdd"]       resize set 625 450
-for_window [title="dropdown_dropdowncalc"] resize set 800 300
+for_window [title="dropdown_tmuxdd"]       resize set 700 500
+for_window [title="dropdown_bcdd"]         resize set 800 300
 for_window [title="dropdown_tmuxdd"]       border pixel 3
 for_window [title="dropdown_*"]            move position center
 
@@ -87,7 +89,7 @@ bindsym $mod+d           exec $menu
 
 bindsym $mod+Ctrl+u      exec bemenuunicode
 bindsym $mod+u           exec $term -e bemenuuni
-bindsym $mod+w           exec $term -e nmtui
+bindsym $mod+w           exec ddspawn nmtui
 
 bindsym $mod+Shift+e     exec prompt 'Are you sure?' 'swaymsg exit'
 bindsym $mod+Shift+r     reload
@@ -95,6 +97,7 @@ bindsym $mod+b           splith
 bindsym $mod+v           splitv
 # lock the system
 bindsym $mod+p           exec pkill -USR1 swayidle
+bindsym --locked $mod+Ctrl+p  exec systemctl suspend
 
 bindsym $mod+F1          exec switchkeyboard
 bindsym $mod+F4          exec mount-drive
@@ -109,25 +112,25 @@ bindsym $mod+g           fullscreen toggle global
 bindsym $mod+Shift+s     sticky toggle
 
 # Dropdown stuff
-bindsym $mod+t           exec --no-startup-id ddspawn tmuxdd
-bindsym $mod+m           exec --no-startup-id ddspawn cmusdd
-bindsym $mod+c           exec --no-startup-id ddspawn bcdd
-bindsym XF86Calculator   exec --no-startup-id ddspawn bcdd
+bindsym $mod+t           exec ddspawn tmuxdd
+bindsym $mod+m           exec ddspawn cmusdd
+bindsym $mod+c           exec ddspawn bcdd
+bindsym XF86Calculator   exec ddspawn bcdd
 
 # #---Multimedia---# #
-bindsym XF86AudioRaiseVolume exec media volume up
-bindsym XF86AudioLowerVolume exec media volume down
-bindsym XF86AudioMute        exec media volume toggle
+bindsym --locked XF86AudioRaiseVolume exec media volume up
+bindsym --locked XF86AudioLowerVolume exec media volume down
+bindsym --locked XF86AudioMute        exec media volume toggle
 
-bindsym XF86AudioNext    exec media next
-bindsym XF86AudioPrev    exec media previous
-bindsym XF86AudioPlay    exec media play-pause
-bindsym XF86AUdioPause   exec media play-pause
+bindsym --locked XF86AudioNext    exec media next
+bindsym --locked XF86AudioPrev    exec media previous
+bindsym --locked XF86AudioPlay    exec media play-pause
+bindsym --locked XF86AUdioPause   exec media play-pause
 
-bindsym $mod+F3               exec brightnessctl set +5%
-bindsym $mod+F2               exec brightnessctl set 5%-
-bindsym XF86MonBrightnessUp   exec brightnessctl set +5%
-bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+bindsym --locked $mod+F3               exec brightnessctl set +5%
+bindsym --locked $mod+F2               exec brightnessctl set 5%-
+bindsym --locked XF86MonBrightnessUp   exec brightnessctl set +5%
+bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
 
 # #---Change focus---# #
 bindsym $mod+Left        focus left
@@ -212,7 +215,8 @@ exec swayidle -w\
 	     timeout 300 "$lock" \
 	     timeout 600 'if pgrep swaylock; then swaymsg "output * dpms off"; fi' \
 	     resume 'swaymsg "output * dpms on"' \
-	     before-sleep "$lock"
+	     before-sleep "$lock" \
+	     lock "$lock"
 
 # #---Status bar---# #
 bar {
