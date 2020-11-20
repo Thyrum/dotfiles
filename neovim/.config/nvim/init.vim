@@ -63,7 +63,7 @@ set tabstop=2
 set smarttab 
 set smartindent
 set cindent
-set cinoptions=(s,us,Us,m1,g0,N-s,t0
+set cinoptions=(s,us,Us,m1,g0,N-s,t0,:0
 
 
 "====
@@ -90,8 +90,8 @@ augroup FiletypeSettings
 	autocmd!
 
 	"autocmd FileType text set cinoptions=u0,U0,g0,N-s,t0
-	autocmd FileType text setlocal nocindent
-	autocmd FileType text setlocal expandtab
+	autocmd FileType text,markdown setlocal nocindent
+	autocmd FileType text,markdown setlocal expandtab
 	autocmd FileType text,markdown setlocal textwidth=80
 	autocmd FileType tex  setlocal expandtab
 augroup END
