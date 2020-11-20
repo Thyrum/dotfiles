@@ -54,11 +54,8 @@ Plug 'morhetz/gruvbox'
 
 " Indentation
 Plug 'editorconfig/editorconfig-vim'
+Plug 'sbdchd/neoformat'
 Plug 'dpc/vim-smarttabs'
-
-Plug 'prettier/vim-prettier', {
-	\ 'do': 'yarn install',
-	\ 'for': ['javascript', 'typescript', 'css', 'scss', 'html'] }
 
 " Undo's
 Plug 'AndrewRadev/undoquit.vim'
