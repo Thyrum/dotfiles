@@ -37,7 +37,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 " Auto-completion
-if has('python3')
+if has('python3') && (has('nvim-0.4.4') || has('patch-8.1-2269'))
 	Plug 'rdnetto/YCM-Generator', {'branch': 'stable'}
 	Plug 'Valloric/YouCompleteMe'
 endif
@@ -71,10 +71,9 @@ endif
 Plug 'tpope/vim-surround'
 
 " Nvim in the browser
-Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
-
-" Fun
-Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
+if has('nvim-0.4.0')
+	Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+endif
 
 call plug#end()
 
