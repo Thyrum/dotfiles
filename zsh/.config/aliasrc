@@ -11,8 +11,8 @@
 # Maintainer: Thyrum (Aron de Jong)
 
 # Trash commands
-command -v rmtrash    && alias rm=rmtrash
-command -v rmdirtrash && alias rmdir=rmdirtrash
+command -v rmtrash    >/dev/null && alias rm=rmtrash
+command -v rmdirtrash >/dev/null && alias rmdir=rmdirtrash
 # This one is to make sudo use trash as well
 alias sudo="sudo "
 
