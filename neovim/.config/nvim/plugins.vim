@@ -70,6 +70,9 @@ endif
 " Easy surrounding with quotes
 Plug 'tpope/vim-surround'
 
+" Nvim in the browser
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+
 " Fun
 Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
 
