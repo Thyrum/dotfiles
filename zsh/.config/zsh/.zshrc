@@ -14,8 +14,26 @@
 # Enable colors and change prompt:
 autoload -U colors && colors
 
-source $HOME/.config/git-prompt.sh
-setopt PROMPT_SUBST ; PS1='%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}$(echo "%M" | sed -e "s/\..*//g") %{$fg[magenta]%}%c%{$fg[red]%}]$(__git_ps1 " %%{$fg[cyan]%%}(%s)")%{$reset_color%}%(!.#.\$)%b '
+# Prompt config
+source $DOTFILES/zsh/.config/git-prompt.sh
+
+PS_GIT='$(__git_ps1 " %%{$fg[cyan]%%}(%s)")'
+GIT_PS1_SHOWDIRTYSTATE=1
+GIT_PS1_SHOWSTASHSTATE=1
+GIT_PS1_SHOWUNTRACKEDFILES=1
+GIT_PS1_SHOWUPSTREAM=1
+
+PS_HOSTNAME=''
+[ -n "${SSH_CLIENT}${SSH_TTY}${SSH_CONNECTION}" ] && PS_HOSTNAME='%{$fg[green]%}@%{$fg[yellow]%}%m'
+
+PS_CHAR='%{$reset_color%}%(!.#.\$)'
+PS_DIR='%{$fg[magenta]%}%c'
+PS_NAME='%{$fg[blue]%}%n'
+
+setopt PROMPT_SUBST
+PS1='%B%{$fg[red]%}['$PS_NAME''$PS_HOSTNAME' '$PS_DIR'%{$fg[red]%}]'$PS_GIT''$PS_CHAR'%b '
+
+unset PS_GIT PS_HOSTNAME PS_CHAR PS_DIR PS_NAME
 
 # History in cache directory:
 HISTSIZE=10000
@@ -27,7 +45,7 @@ autoload -U compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
 compinit
-_comp_options+=(globdots)		# Include hidden files.
+_comp_options+=(globdots) # Include hidden files.
 
 # vi mode
 bindkey -v
