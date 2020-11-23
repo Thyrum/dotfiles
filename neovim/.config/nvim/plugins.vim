@@ -48,8 +48,6 @@ Plug 'tpope/vim-fugitive'
 " Visuals
 Plug 'tikhomirov/vim-glsl'
 Plug 'itchyny/lightline.vim'
-Plug 'preservim/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'morhetz/gruvbox'
 
 " Indentation

@@ -51,8 +51,5 @@ nnoremap <F9> :YcmCompleter FixIt<CR>
 nnoremap <leader>g :YcmCompleter GoTo<CR>
 nnoremap <leader>t :YcmCompleter GetType<CR>
 
-" NERDTree
-nnoremap <c-n> :NERDTreeToggle<CR>
-
 " Neoformat
 nnoremap <leader>f :Neoformat<CR>
