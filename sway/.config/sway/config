@@ -128,10 +128,10 @@ bindsym --locked XF86AudioPrev    exec media previous
 bindsym --locked XF86AudioPlay    exec media play-pause
 bindsym --locked XF86AUdioPause   exec media play-pause
 
-bindsym --locked $mod+F3               exec brightnessctl set +5%
-bindsym --locked $mod+F2               exec brightnessctl set 5%-
-bindsym --locked XF86MonBrightnessUp   exec brightnessctl set +5%
-bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
+bindsym --locked $mod+F3               exec brightnessctl set +1%
+bindsym --locked $mod+F2               exec brightnessctl set 1%-
+bindsym --locked XF86MonBrightnessUp   exec brightnessctl set +1%
+bindsym --locked XF86MonBrightnessDown exec brightnessctl set 1%-
 
 # #---Change focus---# #
 bindsym $mod+Left        focus left
