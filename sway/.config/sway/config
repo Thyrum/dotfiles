@@ -116,6 +116,7 @@ bindsym $mod+t           exec ddspawn tmuxdd
 bindsym $mod+m           exec ddspawn cmusdd
 bindsym $mod+c           exec ddspawn bcdd
 bindsym XF86Calculator   exec ddspawn bcdd
+bindsym $mod+n           exec ddspawn newsboat
 
 # #---Multimedia---# #
 bindsym --locked XF86AudioRaiseVolume exec media volume up
