@@ -1,11 +1,8 @@
 #!/bin/bash
 # Spawn a cmus tmux session or, if it doesn't exist, create a new one
 
-#cmus
 if ! tmux ls 2>/dev/null | grep "cmus"; then
 	tmux new-session -d -s cmus cmus
 	tmux set-option -t cmus status off
-	tmux new-window -t cmus:1 vis
-	tmux select-window -t 0
 fi
 tmux attach -t cmus
