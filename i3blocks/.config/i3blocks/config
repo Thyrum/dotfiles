@@ -76,6 +76,11 @@ label=🔼
 interval=3600
 command=checkupdates | wc -l
 
+[newsboat]
+label=📰
+interval=600
+command=newsboat -x reload -x print-unread | cut -d' ' -f 1
+
 [time]
 label=📅
 command=date '+%a %d %b %Y, %H:%M'
