@@ -1,0 +1,11 @@
+# GUI
+colorscheme shydactyl
+guiset gui full
+set tabcounters show
+
+# Search engine
+set searchengine duckduckgo
+
+# Key bindings
+bind j scrollline  5
+bind k scrollline -5
