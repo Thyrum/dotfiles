@@ -1,5 +1,5 @@
 # GUI
-colorscheme shydactyl
+colorscheme base16-gruvbox-dark-soft
 guiset gui full
 set tabcounters show
 
