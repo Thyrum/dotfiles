@@ -46,7 +46,9 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 " Plugin Bindings
 "=================
 
+"-----
 " coc
+"-----
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
@@ -151,5 +153,7 @@ if has('nvim')
 endif
 
 
+"-----------
 " Neoformat
+"-----------
 nnoremap <leader>f :Neoformat<CR>
