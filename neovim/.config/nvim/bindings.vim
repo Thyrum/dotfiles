@@ -152,6 +152,13 @@ if has('nvim')
   vnoremap <nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#nvim_scroll(0, 1) : "\<C-b>"
 endif
 
+"----------
+" fugitive
+"----------
+nnoremap <leader>gj :diffget //3<cr>
+nnoremap <leader>gf :diffget //2<cr>
+nnoremap <leader>gs :G<cr>
+
 
 "-----------
 " Neoformat
