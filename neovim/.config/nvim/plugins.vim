@@ -37,10 +37,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 " Auto-completion
-if has('python3') && (has('nvim-0.4.4') || has('patch-8.1-2269'))
-	Plug 'rdnetto/YCM-Generator', {'branch': 'stable'}
-	Plug 'Valloric/YouCompleteMe'
-endif
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " git
 Plug 'tpope/vim-fugitive'
@@ -79,19 +76,14 @@ call plug#end()
 " Config
 "========
 
-" YouCompleteMe
-let g:ycm_global_ycm_extra_conf = '~/.config/nvim/ycm_extra_conf.py'
-let g:ycm_keep_logfiles = 1
-let g:ycm_log_level = 'info'
-let g:ycm_always_populate_location_list = 1
+" coc
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
 
-if !exists('g:ycm_semantic_triggers') 
-	let g:ycm_semantic_triggers = {}
-endif
-augroup YouCompleteMe
-	autocmd!
-	autocmd VimEnter * let g:ycm_semantic_triggers.tex=g:vimtex#re#youcompleteme
-augroup end
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
+
 
 " LightLine
 set laststatus=2
