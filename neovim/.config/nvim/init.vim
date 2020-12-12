@@ -102,3 +102,9 @@ augroup END
 set clipboard=unnamedplus
 set nomodeline
 let g:EditorConfig_verbose = 1
+if exists(':terminal') && has('nvim')
+	augroup Misc
+		autocmd!
+		autocmd TermOpen * startinsert
+	augroup END
+endif

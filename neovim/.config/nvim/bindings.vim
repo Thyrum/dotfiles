@@ -42,6 +42,15 @@ nnoremap <leader>: ?<++><CR>c4l
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
+" Open a terminal in a new window
+if exists(':terminal')
+	if has('nvim')
+		nnoremap <leader>c :tabnew +:terminal<cr>
+	else
+		nnoremap <leader>c :tab terminal<cr>
+	endif
+endif
+
 "=================
 " Plugin Bindings
 "=================
