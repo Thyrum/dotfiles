@@ -98,12 +98,8 @@ let g:lightline = {
 			\   'fugitive': 'FugitiveHead',
 			\ },
 			\ }
-if $TERM !=? 'linux'
-  set laststatus=2
-  set noshowmode
-else
-  call lightline#disable()
-endif
+set laststatus=2
+set noshowmode
 
 " EditorConfig
 
