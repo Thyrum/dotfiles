@@ -54,6 +54,6 @@ export LS_COLORS='rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;
 
 setopt autocd
 
-if [ "$(tty)" = "/dev/tty1" ]; then
-	exec sway
+if [ $(tty) = '/dev/tty1' ] && [ $XDG_SESSION_TYPE = 'tty' ]; then
+	MOZ_ENABLE_WAYLAND=1 QT_QPA_PLATFORM=wayland exec sway
 fi
