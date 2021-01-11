@@ -50,7 +50,7 @@ Plug 'morhetz/gruvbox'
 " Indentation
 Plug 'editorconfig/editorconfig-vim'
 Plug 'sbdchd/neoformat'
-Plug 'dpc/vim-smarttabs'
+Plug 'Thyrum/vim-stabs'
 
 " Undo's
 Plug 'AndrewRadev/undoquit.vim'
@@ -106,6 +106,10 @@ set noshowmode
 " Don't use editorconfig when editing fugitive buffers or going over ssh
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
+" vim-stabs
+" Remove tab mapping to be able to use coc.nvim as well
+let g:stabs_maps = 'boO='
+
 " FZF
 nnoremap <C-p> :GFiles<CR>
 
@@ -120,7 +124,7 @@ set conceallevel=1
 let g:tex_conceal='abdmg'
 
 " ultisnips
-let g:UltiSnipsExpandTrigger = '<tab>'
+let g:UltiSnipsExpandTrigger = '<s-tab>'
 let g:UltiSnipsJumpForwardTrigger = '<c-j>'
 let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
 
