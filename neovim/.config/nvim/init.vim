@@ -73,11 +73,12 @@ set number relativenumber
 set mouse=a
 set scrolloff=3
 set showbreak=↪\ 
-set hlsearch
+set nohlsearch
 set incsearch
 set foldmethod=syntax
 set foldlevel=9999999
 set splitbelow splitright
+set hidden
 
 set listchars=tab:┆\ 
 set list
