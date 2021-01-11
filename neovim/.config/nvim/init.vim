@@ -79,9 +79,7 @@ set foldmethod=syntax
 set foldlevel=9999999
 set splitbelow splitright
 set hidden
-
-set listchars=tab:┆\ 
-set list
+call ToggleListChars()
 
 "============================
 " Filetype specific settings
