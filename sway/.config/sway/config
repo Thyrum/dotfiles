@@ -51,15 +51,15 @@ floating_modifier $mod normal
 
 # #---Window properties---# #
 for_window [app_id="Alacritty"]            opacity 0.9
-for_window [title="dropdown_*"]            opacity 0.8
-for_window [title="dropdown_nmtui*"]       opacity 1
+for_window [app_id="Alacritty" title="dropdown_*"]      opacity 0.8
+for_window [app_id="Alacritty" title="dropdown_nmtui*"] opacity 1
 
-for_window [title="dropdown_*"]            floating enable
-for_window [title="dropdown_*"]            sticky enable
-for_window [title="dropdown_tmuxdd"]       resize set 700 500
-for_window [title="dropdown_bcdd"]         resize set 800 300
-for_window [title="dropdown_tmuxdd"]       border pixel 3
-for_window [title="dropdown_*"]            move position center
+for_window [app_id="Alacritty" title="dropdown_*"]      floating enable
+for_window [app_id="Alacritty" title="dropdown_*"]      sticky enable
+for_window [app_id="Alacritty" title="dropdown_tmuxdd"] resize set 700 500
+for_window [app_id="Alacritty" title="dropdown_bcdd"]   resize set 800 300
+for_window [app_id="Alacritty" title="dropdown_tmuxdd"] border pixel 3
+for_window [app_id="Alacritty" title="dropdown_*"]      move position center
 
 # #---Autostart---# #
 exec kanshi
