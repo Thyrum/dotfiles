@@ -32,6 +32,11 @@ markup=pang0
 [mediaplayer]
 interval=10
 
+[calendar]
+command=gcalcli agenda --military --tsv --nostarted | cut -f '2,5' | head -n 1
+interval=60
+color=#DDDDDD
+
 [bluetooth]
 label=🦷
 interval=10
@@ -62,10 +67,10 @@ label=📶
 interval=10
 separator=false
 
-[cpu_usage]
-label=CPU 
-interval=10
-min_width=CPU 100.00%
+#[cpu_usage]
+#label=CPU 
+#interval=10
+#min_width=CPU 100.00%
 
 #[load_average]
 #label=LOAD
