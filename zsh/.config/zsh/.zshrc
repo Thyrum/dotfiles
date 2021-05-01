@@ -11,6 +11,12 @@
 
 # Config for ZSH shell
 
+
+# Fallback to `xterm-256color` if terminal is not recognized
+if [ -z "$(find /usr/share/terminfo -type f -name \"$TERM\" 2>/dev/null)" ]; then
+	export TERM=xterm-256color
+fi
+
 # Enable colors and change prompt:
 autoload -U colors && colors
 
