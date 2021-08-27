@@ -30,13 +30,15 @@ augroup CursorLine
 	autocmd WinLeave * setlocal nocursorline
 augroup END
 
-"augroup LuaHighlight
-"  au!
-"  au TextYankPost * lua vim.highlight.on_yank { higroup = "Substitute", timeout = 150, on_macro = true }
-"augroup END
+if exists(':lua')
+	augroup highlight_yank
+		autocmd!
+		autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 50})
+	augroup END
+endif
 
 " Hightlight column 81
-set colorcolumn=81
+set colorcolumn=81,101
 
 syntax enable
 filetype plugin indent on
@@ -92,8 +94,13 @@ augroup FiletypeSettings
 	autocmd FileType text,markdown setlocal nocindent
 	autocmd FileType text,markdown setlocal expandtab
 	autocmd FileType text,markdown setlocal textwidth=80
-	autocmd FileType tex  setlocal expandtab
+	"autocmd FileType tex  setlocal expandtab
 augroup END
+
+"================
+" Autocompletion
+"================
+set completeopt=menuone,noinsert,noselect
 
 "======
 " Misc

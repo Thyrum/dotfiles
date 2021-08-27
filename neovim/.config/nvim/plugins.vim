@@ -33,11 +33,21 @@ endif
 call plug#begin()
 
 " File management
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
+if has('nvim-0.5')
+	Plug 'nvim-lua/plenary.nvim' " telescope dependency
+	Plug 'nvim-telescope/telescope.nvim'
 
-" Auto-completion
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+	Plug 'neovim/nvim-lspconfig'
+	Plug 'nvim-lua/completion-nvim'
+
+	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+else
+	Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+	Plug 'junegunn/fzf.vim'
+
+	" Auto-completion
+	Plug 'neoclide/coc.nvim', {'branch': 'release'}
+endif
 
 " git
 Plug 'tpope/vim-fugitive'
@@ -69,5 +79,12 @@ Plug 'tpope/vim-surround'
 if has('nvim-0.4.0')
 	Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 endif
+
+" General languages
+Plug 'udalov/kotlin-vim'
+Plug 'lepture/vim-jinja'
+
+" tmux integration
+Plug 'preservim/vimux'
 
 call plug#end()
