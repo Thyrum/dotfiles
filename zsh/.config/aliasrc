@@ -38,6 +38,12 @@ alias grep="grep --color=auto"
 alias egrep="egrep --color=auto"
 alias fgrep="fgrep --color=auto"
 
+# tmux shortcuts
+alias t="tmux"
+alias ta="tmux attach -t"
+alias tls="tmux ls"
+alias tn="tmux new -s"
+
 
 # Fun
 alias starwars="telnet towel.blinkenlights.nl"
