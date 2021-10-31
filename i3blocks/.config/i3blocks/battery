@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 #power=$(acpi -b | awk -F ", " '{print $2}' | sed 's/.$//')
 #state=$(acpi -b | cut -d ' ' -f 3)
@@ -22,7 +22,9 @@ echo "$statusicon $power%"
 # Color
 if [ "$power" -lt "5" ]; then
 	echo "#FF0000"
-	notify-send --urgency=critical --category=device --expire-time=30000 "Battery at $power%"
+	if [ "$state" != "Charging" ]; then
+		notify-send --urgency=critical --category=device --expire-time=30000 "Battery at $power%"
+	fi
 	exit 33 # Set the urgent flag
 elif [ "$power" -lt "25" ]; then
 	echo "#FF0000"
