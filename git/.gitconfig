@@ -13,6 +13,8 @@
 	path = ~/.gitconfig-uni
 [includeIf "gitdir:/mnt/DATA/linux/dev/"]
 	path = ~/.gitconfig-personal
+[includeIf "gitdir:/home/aron/AUR/"]
+	path = ~/.gitconfig-aur
 [push]
 	default = simple
 	recurseSubmodules = check
@@ -34,3 +36,5 @@
 	recurse = true
 [pull]
 	ff = only
+[init]
+	defaultBranch = master
