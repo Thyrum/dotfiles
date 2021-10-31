@@ -11,3 +11,4 @@ set searchengine duckduckgo
 # Key bindings
 bind j scrollline  5
 bind k scrollline -5
+unbind <C-f>
