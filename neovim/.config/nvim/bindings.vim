@@ -71,8 +71,11 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 " Open a terminal in a new window
 if exists(':terminal')
 	if has('nvim')
-		nnoremap <leader>c :tabnew +:terminal<cr>
+		nnoremap <leader>t :tabnew +:terminal<cr>
 	else
-		nnoremap <leader>c :tab terminal<cr>
+		nnoremap <leader>t :tab terminal<cr>
 	endif
 endif
+
+" Close quickfix and location list
+nnoremap <c-w>e :cclose<cr>:lclose<cr>
