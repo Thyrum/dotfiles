@@ -135,7 +135,7 @@ bindkey '^e' edit-command-line
 
 
 # Load zsh-syntax-highlighting; should be last.
-#[ -n "$DOTFILES" ] && source $DOTFILES/zsh/.config/zsh/plugins/zsh-vim-mode/zsh-vim-mode.plugin.zsh
+[ -n "$DOTFILES" ] && source $DOTFILES/zsh/.config/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 [ -n "$DOTFILES" ] && source $DOTFILES/zsh/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # FZF after syntax highlighting for CTRL-R binding
