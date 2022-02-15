@@ -4,6 +4,12 @@ snippet beg "begin{} / end{}" bA
 \end{$1}
 endsnippet
 
+snippet be{ "begin{} / end{} exra argument" bA
+\begin{$1}{$2}
+  $0
+\end{$1}
+endsnippet
+
 snippet '([A-Za-z])(\d)' "auto subscript" wr
 `!p snip.rv = match.group(1)`_`!p snip.rv = match.group(2)`
 endsnippet
