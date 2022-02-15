@@ -81,7 +81,6 @@ if has('nvim-0.4.0')
 endif
 
 " General languages
-Plug 'udalov/kotlin-vim'
 Plug 'lepture/vim-jinja'
 
 " tmux integration
