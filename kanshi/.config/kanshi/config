@@ -6,3 +6,8 @@ profile {
 	output eDP-1 enable position 1680,0
 	output "Samsung Electric Company SyncMaster H1AK500000" enable position 0,0
 }
+
+profile {
+	output eDP-1 enable position 1920,0
+	output "Unknown G2790G4 HESM5HA016365" enable position 0,0
+}
