@@ -1,4 +1,4 @@
-if ! has('nvim-0.5')
+if ! has('nvim-0.6.0')
 	finish
 endif
 

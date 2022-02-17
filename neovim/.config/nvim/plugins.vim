@@ -33,21 +33,24 @@ endif
 call plug#begin()
 
 " File management
-if has('nvim-0.5')
+if has('nvim-0.6.0')
 	Plug 'nvim-lua/plenary.nvim' " telescope dependency
 	Plug 'nvim-telescope/telescope.nvim'
+else
+	Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+	Plug 'junegunn/fzf.vim'
+endif
 
+" Autocompletion and linting
+if has('nvim-0.5')
 	Plug 'neovim/nvim-lspconfig'
 	Plug 'nvim-lua/completion-nvim'
 
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 else
-	Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-	Plug 'junegunn/fzf.vim'
-
-	" Auto-completion
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
 endif
+
 
 " git
 Plug 'tpope/vim-fugitive'
