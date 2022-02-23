@@ -3,3 +3,4 @@
 /zsh/.config/zsh/.zcompdump
 /termux/.termux/*
 !/termux/.termux/termux.properties
+/newsboat/.config/newsboat/urls
