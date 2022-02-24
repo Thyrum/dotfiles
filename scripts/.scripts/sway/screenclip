@@ -2,16 +2,23 @@
 
 print_usage() {
 	>&2 echo "Usage:"
-	>&2 echo "  $0 [-s|--selection] [-h|--help] [filename.png]"
+	>&2 echo "  $0 [-s|--selection] [filename.png]"
+	>&2 echo "  $0 [-f|--focused]   [filename.png]"
+	>&2 echo "  $0 [-h|--help]"
+	>&2 echo ""
+	>&2 echo "Takes a screenshot and saves it as [filename.png], which defaults to"
+	>&2 echo " ~/Pictures/screenshots/scrn-\$(date +'%Y-%m-%d-%H-%M-%S').png"
 	>&2 echo ""
 	>&2 echo "Options:"
 	>&2 echo "  -s, --selection  Create screenshot of a screen selection (using slurp)"
+	>&2 echo "  -f, --focused    Create screenshot of the focused window"
 	>&2 echo "  -h, --help       Show this help"
 
 	exit 1
 }
 
 selection=false
+focused=false
 
 unset $file
 
@@ -19,19 +26,47 @@ for opt in $@; do
 	case "$opt" in
 		"-h" | "--help")      print_usage ;;
 		"-s" | "--selection") selection=true ;;
+		"-f" | "--focused")   focused=true ;;
 		-*)                   >&2 echo "Unknown option: '$opt'"; exit 1 ;;
 		*)                    [[ -z $file ]] && file="$opt" || print_usage ;;
 	esac
 done
 
-[[ -z $file ]] && file="$HOME/Pictures/screenshots/scrn-$(date +'%Y-%m-%d-%H-%M-%S').png"
+[ -z "$file" ] && file="$HOME/Pictures/screenshots/scrn-$(date +'%Y-%m-%d-%H-%M-%S').png"
+file=$(realpath "$file")
 
-
-if [ "$selection" = true ]
+if [ "$selection" = true ] && [ "$focused" = true ]
 then
-	slurp | grim -g - "$file"
-else
-	grim "$file"
+	print_usage
 fi
 
+capture=""
+
+if [ "$focused" = true ]
+then
+	rect=$(swaymsg -t get_tree | jq -r '..|try select(.focused == true)|.rect')
+	x=$(echo $rect | jq '.x')
+	y=$(echo $rect | jq '.y')
+	width=$(echo $rect | jq '.width')
+	height=$(echo $rect | jq '.height')
+	capture="${x},${y} ${width}x${height}"
+elif [ "$selection" = true ]
+then
+	capture="$(slurp)"
+fi
+
+if [ "$capture" != "" ]
+then
+	grim -g "$capture" "$file"
+elif [ "$selection" = false ]
+then
+	grim "$file"
+else
+	notify-send "Screenshot cancelled"
+	exit 1
+fi
+
+
 cat "$file" | wl-copy --type image/png 
+
+notify-send --icon="$file" "Screenshot copied to clipboard" "$file"
