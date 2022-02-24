@@ -1,3 +1,8 @@
+# Inverse search for latex files
+set synctex true
+set synctex-editor-command nvim --headless -c "VimtexInverseSearch %{line} '%{input}'"
+
+# == COLOR SCHEME ==
 set notification-error-bg       "#282828" # bg
 set notification-error-fg       "#fb4934" # bright:red
 set notification-warning-bg     "#282828" # bg
