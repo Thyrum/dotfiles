@@ -168,6 +168,18 @@ bindsym $mod+Shift+j     move down  30
 bindsym $mod+Shift+k     move up    30
 bindsym $mod+Shift+l     move right 30
 
+bindsym $mod+Mod1+h      exec flush left
+bindsym $mod+Mod1+j      exec flush down
+bindsym $mod+Mod1+k      exec flush up
+bindsym $mod+Mod1+l      exec flush right
+
+bindsym $mod+Mod1+Left   exec flush left
+bindsym $mod+Mod1+Down   exec flush down
+bindsym $mod+Mod1+Up     exec flush up
+bindsym $mod+Mod1+Right  exec flush right
+
+bindsym $mod+Mod1+m      move position center;
+
 # #---Resize focused window---# #
 bindsym $mod+Shift+u     resize shrink width  10 px or 10 ppt
 bindsym $mod+Shift+i     resize grow   height 10 px or 10 ppt
@@ -180,8 +192,6 @@ bindsym $mod+space focus mode_toggle
 
 bindsym $mod+Shift+b     floating enable; exec hover left
 bindsym $mod+Shift+n     floating enable; exec hover right
-
-bindsym $mod+Shift+c     move position center;
 
 # #---Switch to workspace---# #
 bindsym $mod+1           workspace $ws1

@@ -1,0 +1,28 @@
+#!/bin/sh
+
+focused_screen=`swaymsg -t get_outputs | jq '.[] | select(.focused==true) | .rect'`
+screen_minx=`echo "$focused_screen" | jq '.x'`
+screen_maxx=`echo "$focused_screen" | jq '.x + .width'`
+screen_miny=`echo "$focused_screen" | jq '.y'`
+screen_maxy=`echo "$focused_screen" | jq '.y + .height'`
+
+focused_window=`swaymsg -t get_tree | jq '.. | (.["nodes","floating_nodes"]? // empty) [] | select(.focused==true) | .rect'`
+windowwidth=`echo $focused_window | jq '.width'`
+windowheight=`echo $focused_window | jq '.height'`
+windowx=`echo $focused_window | jq '.x'`
+windowy=`echo $focused_window | jq '.y'`
+
+newx=$windowx
+newy=$windowy
+
+case "$1" in
+	left)  newx=$screen_minx;;
+	right) newx=`expr $screen_maxx - $windowwidth`;;
+	up)    newy=$screen_miny;;
+	down)  newy=`expr $screen_maxy - $windowheight`;;
+esac
+
+echo "new x: $newx"
+echo "new y: $newy"
+
+swaymsg move absolute position $newx $newy
