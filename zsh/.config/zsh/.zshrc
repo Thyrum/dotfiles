@@ -134,8 +134,10 @@ bindkey '^e' edit-command-line
 
 
 
-# Load zsh-syntax-highlighting; should be last.
-[ -n "$DOTFILES" ] && source $DOTFILES/zsh/.config/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+# Load plugins, should be last
+# Use "ZVM_INIT_MODE=sourcing" because otherwise zsh-syntax-highlighting doest not work
+# See https://github.com/zsh-users/zsh-syntax-highlighting/issues/871
+[ -n "$DOTFILES" ] && ZVM_INIT_MODE=sourcing source $DOTFILES/zsh/.config/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 [ -n "$DOTFILES" ] && source $DOTFILES/zsh/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # FZF after syntax highlighting for CTRL-R binding
