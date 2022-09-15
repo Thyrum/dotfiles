@@ -14,6 +14,7 @@ local source_mapping = {
 	path = "[Path]",
 }
 local lspkind = require("lspkind")
+local luasnip = require("luasnip")
 
 cmp.setup({
 	snippet = {
@@ -24,7 +25,20 @@ cmp.setup({
 	mapping = cmp.mapping.preset.insert({
 		["<C-u>"] = cmp.mapping.scroll_docs(-4),
 		["<C-d>"] = cmp.mapping.scroll_docs(4),
-		["<C-Space>"] = cmp.mapping.complete(),
+		["<C-Space>"] = cmp.mapping(function(fallback)
+			if luasnip.expand_or_jumpable() then
+				luasnip.expand_or_jump()
+			else
+				cmp.complete()
+			end
+		end, { "i", "s" }),
+		["<S-Space>"] = cmp.mapping(function(fallback)
+			if luasnip.jumpable(-1) then
+				luasnip.jump(-1)
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
 	}),
 	formatting = {
 		format = function(entry, vim_item)

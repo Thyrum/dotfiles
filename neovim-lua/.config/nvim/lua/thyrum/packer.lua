@@ -27,7 +27,10 @@ return require('packer').startup(function(use)
 	use("nvim-lua/lsp_extensions.nvim")
 	--use("glepnir/lspsaga.nvim")
 	use("simrat39/symbols-outline.nvim")
-	use("L3MON4D3/LuaSnip")
+	use {
+		"L3MON4D3/LuaSnip",
+		tag = "v<CurrentMajor>.*"
+	}
 	use("saadparwaiz1/cmp_luasnip")
 
 	use("mbbill/undotree")

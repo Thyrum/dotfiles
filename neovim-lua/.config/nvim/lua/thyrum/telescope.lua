@@ -32,3 +32,5 @@ M.search_dotfiles = function()
 		hidden = true,
 	})
 end
+
+return M
