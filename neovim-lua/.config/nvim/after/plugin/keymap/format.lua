@@ -12,6 +12,6 @@ local autocmd = vim.api.nvim_create_autocmd
 
 autocmd('BufWritePre', {
 	group = cursorline_group,
-	pattern = {'*.tex', '*.sty'},
+	pattern = {'*.tex', '*.sty', '*.js', '*.ts'},
 	callback = function() vim.cmd([[Neoformat]]) end,
 })
