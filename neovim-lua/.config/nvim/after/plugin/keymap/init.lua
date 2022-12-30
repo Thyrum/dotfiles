@@ -9,7 +9,7 @@ nnoremap("<C-k>", "<C-w>k")
 nnoremap("<C-l>", "<C-w>l")
 
 -- Disable relative numbmers, usefull for slow internet connections
-nnoremap("<leader>r", function() vim.opt.realtivenumber = not vim.opt.relativenumber end)
+nnoremap("<leader>re", function() vim.opt.relativenumber = not vim.opt.relativenumber:get() end)
 
 -- Jump to the next TODO replacement marker
 nnoremap("<leader>;", "/<++><CR>c4l")
