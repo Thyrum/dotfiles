@@ -1,57 +1,80 @@
-local fn = vim.fn
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-if fn.empty(fn.glob(install_path)) > 0 then
-  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-  vim.cmd [[packadd packer.nvim]]
+local install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+	PACKER_BOOTSTRAP = vim.fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+	vim.cmd [[packadd packer.nvim]]
 end
 
 
-return require('packer').startup(function(use)
+require('packer').startup(function(use)
+	-- Package manager
 	use("wbthomason/packer.nvim")
-	use("sbdchd/neoformat")
 
-	use("nvim-lua/plenary.nvim") -- telescope dependency
-	use("nvim-telescope/telescope.nvim")
+	use({ -- LSP Configuration & Plugins
+		"neovim/nvim-lspconfig",
+		requires = {
+			-- Automatically install LSPs to stdpath for neovim
+			'williamboman/mason.nvim',
+			'williamboman/mason-lspconfig.nvim',
 
-	-- LSP stuffs
-	use("neovim/nvim-lspconfig")
-	use("hrsh7th/cmp-nvim-lsp")
-	use("hrsh7th/cmp-buffer")
-	use("hrsh7th/nvim-cmp")
-	--use {
-	--	"tzachar/cmp-tabnine",
-	--	run = "./install.sh",
-	--	requires = 'hrsh7th/nvim-cmp'
-	--}
-	use("onsails/lspkind-nvim")
-	use("nvim-lua/lsp_extensions.nvim")
-	--use("glepnir/lspsaga.nvim")
-	use("simrat39/symbols-outline.nvim")
-	use {
-		"L3MON4D3/LuaSnip",
-		tag = "v<CurrentMajor>.*"
-	}
-	use("saadparwaiz1/cmp_luasnip")
+			-- Useful status updates for LSP
+			'j-hui/fidget.nvim',
 
-	use("mbbill/undotree")
+			-- Additional lua configuration, makes nvim stuff amazing
+			'folke/neodev.nvim',
+		},
+	})
 
-	-- Colorscheme
-	use("gruvbox-community/gruvbox")
+	use({ -- Autocompletion
+		"hrsh7th/nvim-cmp",
+		requires = {
+			'hrsh7th/cmp-nvim-lsp',
+			'L3MON4D3/LuaSnip',
+			'saadparwaiz1/cmp_luasnip',
+			'hrsh7th/cmp-buffer',
 
-	use {
+			-- Visuals
+			'onsails/lspkind-nvim',
+		},
+	})
+
+	use { -- Highlight, edit, and navigate code
 		"nvim-treesitter/nvim-treesitter",
-		run = ":TSUpdate"
+		run = function()
+			pcall(require('nvim-treesitter.install').update { with_sync = true })
+		end,
 	}
 
-	-- git
-	use("tpope/vim-fugitive")
+	-- Git related plugins
+	use 'tpope/vim-fugitive'
+	use 'tpope/vim-rhubarb'
+	use 'lewis6991/gitsigns.nvim'
+
+	-- Misc
+	use 'gruvbox-community/gruvbox'
 	use {
 		'nvim-lualine/lualine.nvim',
 		requires = { 'kyazdani42/nvim-web-devicons', opt = true }
 	}
+	use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
+	use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
 
-	-- indentation
-	use("editorconfig/editorconfig-vim")
+	-- Fuzzy Finder (files, lsp, etc)
+	use {
+		'nvim-telescope/telescope.nvim',
+		branch = '0.1.x',
+		requires = { 'nvim-lua/plenary.nvim' },
+	}
+	use {
+		'ThePrimeagen/git-worktree.nvim',
+		requires = { 'nvim-telescope/telescope.nvim' }
+	}
+
+	-- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
+	use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
+
+	use("sbdchd/neoformat")
+	use("github/copilot.vim")
+	use("mbbill/undotree")
 
 	-- LaTeX
 	use("lervag/vimtex")
@@ -62,9 +85,23 @@ return require('packer').startup(function(use)
 		run = function() vim.fn['firenvim#install'](0) end,
 	})
 
+	-- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
+	local has_plugins, plugins = pcall(require, 'custom.plugins')
+	if has_plugins then
+		plugins(use)
+	end
+
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
-	if packer_bootstrap then
+	if PACKER_BOOTSTRAP then
 		require('packer').sync()
 	end
 end)
+
+if PACKER_BOOTSTRAP then
+	print '=================================='
+	print '    Plugins are being installed'
+	print '    Wait until Packer completes,'
+	print '       then restart nvim'
+	print '=================================='
+end

@@ -11,7 +11,7 @@ FormatGroup = augroup("Format", {})
 local autocmd = vim.api.nvim_create_autocmd
 
 autocmd('BufWritePre', {
-	group = cursorline_group,
+	group = FormatGroup,
 	pattern = {'*.tex', '*.sty', '*.js', '*.ts'},
 	callback = function() vim.cmd([[Neoformat]]) end,
 })

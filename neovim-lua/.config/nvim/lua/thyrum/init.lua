@@ -1,12 +1,8 @@
 require("thyrum.set")
 require("thyrum.packer")
-require("thyrum.telescope")
 
 local augroup = vim.api.nvim_create_augroup
-ThyrumGroup = augroup('Thyrum', {})
-
 local autocmd = vim.api.nvim_create_autocmd
-local yank_group = augroup('HighlightYank', {})
 
 local cursorline_group = augroup('CursorLine', {})
 autocmd({'VimEnter', 'WinEnter', 'BufWinEnter'}, {
@@ -24,6 +20,7 @@ function R(name)
 	require("plenary.reload").reaload_module(name)
 end
 
+local yank_group = augroup('HighlightYank', {})
 autocmd('TextYankPost', {
 	group = yank_group,
 	pattern = '*',
@@ -35,6 +32,7 @@ autocmd('TextYankPost', {
 	end,
 })
 
+ThyrumGroup = augroup('Thyrum', {})
 autocmd({"BufWritePre"}, {
 	group = ThyrumGroup,
 	pattern = "*",
