@@ -86,12 +86,6 @@ require('fidget').setup()
 local cmp = require("cmp")
 local luasnip = require("luasnip")
 local lspkind = require("lspkind")
-local source_mapping = {
-	buffer = "[Buffer]",
-	nvim_lsp = "[LSP]",
-	nvim_lua = "[Lua]",
-	path = "[Path]",
-}
 
 cmp.setup({
 	snippet = {
@@ -118,16 +112,22 @@ cmp.setup({
 		end, { "i", "s" }),
 	}),
 	formatting = {
-		format = function(entry, vim_item)
-			vim_item.kind = lspkind.presets.default[vim_item.kind]
-			vim_item.menu = source_mapping[entry.source.name]
-			return vim_item
-		end,
+		format = lspkind.cmp_format({
+			mode = 'text',
+			menu = ({
+				buffer = "[Buffer]",
+				nvim_lsp = "[LSP]",
+				nvim_lua = "[Lua]",
+				path = "[Path]",
+				omni = "[Omni]",
+			}),
+		}),
 	},
 	sources = {
 		{ name = "nvim_lsp" },
 		{ name = "nvim_lua" },
 		{ name = "luasnip" },
 		{ name = "buffer" },
+		{ name = "omni" },
 	},
 })
