@@ -30,6 +30,8 @@ require('packer').startup(function(use)
 			'hrsh7th/cmp-nvim-lsp',
 			'L3MON4D3/LuaSnip',
 			'saadparwaiz1/cmp_luasnip',
+
+			-- Extra completion sources
 			'hrsh7th/cmp-buffer',
 
 			-- Visuals
@@ -77,7 +79,8 @@ require('packer').startup(function(use)
 	use("mbbill/undotree")
 
 	-- LaTeX
-	use("lervag/vimtex")
+	--use{'lervag/vimtex', requires = { 'hrsh7th/cmp-omni' }, }
+	use{'lervag/vimtex'}
 
 	use("tpope/vim-surround")
 	use("tpope/vim-repeat")
