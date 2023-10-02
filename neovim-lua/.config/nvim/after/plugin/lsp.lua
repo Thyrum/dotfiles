@@ -47,11 +47,12 @@ end
 
 local servers = {
 	clangd = {},
-	sumneko_lua = {
+	lua_ls = {
 		Lua = {
-			workspace = { checkThirdParty = false },
-			telemetry = { enable = false },
-		},
+			workspace = {
+				checkThirdParty = false,
+			}
+		}
 	},
 }
 
@@ -114,20 +115,24 @@ cmp.setup({
 	formatting = {
 		format = lspkind.cmp_format({
 			mode = 'text',
-			menu = ({
+			menu = {
 				buffer = "[Buffer]",
 				nvim_lsp = "[LSP]",
 				nvim_lua = "[Lua]",
 				path = "[Path]",
 				omni = "[Omni]",
-			}),
+			}
 		}),
 	},
 	sources = {
-		{ name = "nvim_lsp" },
+		{ name = "nvim_lsp", priority = 100 }, -- Keep LSP results on top
 		{ name = "nvim_lua" },
 		{ name = "luasnip" },
 		{ name = "buffer" },
-		{ name = "omni" },
+		{ name = "omni", priority = 99 }, -- Keep omni results second
+	},
+	completion = {
+		keyword_length = 1,
+		completeopt = "menu,noselect",
 	},
 })

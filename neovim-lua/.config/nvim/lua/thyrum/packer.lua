@@ -31,6 +31,7 @@ require('packer').startup(function(use)
 			'L3MON4D3/LuaSnip',
 			'saadparwaiz1/cmp_luasnip',
 			'hrsh7th/cmp-buffer',
+			'hrsh7th/cmp-omni',
 
 			-- Visuals
 			'onsails/lspkind-nvim',
@@ -39,9 +40,9 @@ require('packer').startup(function(use)
 
 	use { -- Highlight, edit, and navigate code
 		"nvim-treesitter/nvim-treesitter",
-		run = function()
+		--[[run = function()
 			pcall(require('nvim-treesitter.install').update { with_sync = true })
-		end,
+		end,]]--
 	}
 
 	-- Git related plugins
