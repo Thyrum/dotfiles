@@ -8,12 +8,12 @@ return {
 			{
 				"hrsh7th/cmp-nvim-lsp",
 				cond = function()
-					return require("thyrum.util").has("nvim-cmp")
+					return require("config.util").has("nvim-cmp")
 				end,
 			},
 		},
 		config = function(_, opts)
-			local Util = require("thyrum.util")
+			local Util = require("config.util")
 			Util.on_attach(function(client, buffer)
 				require("plugins.lsp.format").on_attach(client, buffer)
 				require("plugins.lsp.keymaps").on_attach(client, buffer)

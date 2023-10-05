@@ -1,1 +1,1 @@
-require("thyrum")
+require("config")
