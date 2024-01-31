@@ -5,6 +5,10 @@ set showbreak=↪\  breakindent wrap
 set colorcolumn=81,101
 set shortmess+=c
 
+" Block cursor in insert mode
+let &t_SI = "\e[6 q"
+let &t_EI = "\e[2 q"
+
 augroup CursorLine
         autocmd!
         autocmd VimEnter,WinEnter,BufWinEnter * set cursorline
