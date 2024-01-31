@@ -1,5 +1,5 @@
 " VISUALS
-set relativenumber nonumber
+set relativenumber number
 set listchars=tab:┆\  list
 set showbreak=↪\  breakindent wrap
 set colorcolumn=81,101
