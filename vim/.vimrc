@@ -1,37 +1,5 @@
 let mapleader=" "
 
-" PLUGINS
-let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
-if empty(glob(data_dir . '/autoload/plug.vim'))
-  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
-call plug#begin()
-Plug 'tpope/vim-surround'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-fugitive'
-Plug 'jszakmeister/vim-togglecursor'
-call plug#end()
-
-" togglecursor
-if match($TERM, "color") >= 0
-	let g:togglecursor_force = 'xterm'
-endif
-let g:togglecursor_leave = "line"
-
-" fzf.vim
-nnoremap <leader>rg :Rg<CR>
-nnoremap <leader>sf :Files<cr>
-nnoremap <leader>sg :GFiles<cr>
-nnoremap <leader>sg :Files<cr>
-
-" vim-fugitive
-nnoremap <leader>gj :diffget //3<cr>
-nnoremap <leader>gf :diffget //2<cr>
-nnoremap <leader>gs :G<cr>
-
 " VISUALS
 set relativenumber number
 set listchars=tab:┆\  list
@@ -100,3 +68,49 @@ inoremap , ,<C-g>u
 inoremap . .<C-g>u
 inoremap ! !<C-g>u
 inoremap ? ?<C-g>u
+
+" PLUGINS
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin()
+Plug 'tpope/vim-surround'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'jszakmeister/vim-togglecursor'
+Plug 'lervag/vimtex'
+Plug 'sbdchd/neoformat'
+call plug#end()
+
+" togglecursor
+if match($TERM, "color") >= 0
+	let g:togglecursor_force = 'xterm'
+endif
+let g:togglecursor_leave = "line"
+
+" fzf.vim
+nnoremap <leader>rg :Rg<cr>
+nnoremap <leader>sf :Files<cr>
+nnoremap <leader>sg :GFiles<cr>
+nnoremap <leader>sg :Files<cr>
+
+" vim-fugitive
+nnoremap <leader>gj :diffget //3<cr>
+nnoremap <leader>gf :diffget //2<cr>
+nnoremap <leader>gs :G<cr>
+
+" vimtex
+let g:vimtex_view_method = 'zathura'
+let g:vimtex_compiler_method = 'latexmk'
+let g:vimtex_compiler_latexmk = {
+	\ 'aux_dir' : 'build',
+	\ 'out_dir' : 'build',
+	\ 'build_dir' : 'build'
+\}
+
+" neoformat
+nnoremap <leader>f :Neoformat<cr>
