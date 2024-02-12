@@ -48,7 +48,10 @@ set tabstop=2 softtabstop=2 shiftwidth=2 noexpandtab
 set smartindent
 
 " FILES
-set swapfile nobackup undodir='$HOME/.vim/undodir' undofile
+set swapfile nobackup undofile
+if ! has('nvim')
+	set undodir='$HOME/.vim/undodir'
+endif
 
 set isfname+=@-@
 
@@ -86,6 +89,13 @@ Plug 'tpope/vim-fugitive'
 Plug 'jszakmeister/vim-togglecursor'
 Plug 'lervag/vimtex'
 Plug 'sbdchd/neoformat'
+
+if has('nvim')
+	Plug 'lewis6991/gitsigns.nvim'
+else
+	Plug 'airblade/vim-gitgutter'
+endif
+
 call plug#end()
 
 " togglecursor
@@ -116,3 +126,16 @@ let g:vimtex_compiler_latexmk = {
 
 " neoformat
 nnoremap <leader>f :Neoformat<cr>
+
+" gitsigns
+if has('nvim')
+	lua require('gitsigns').setup({
+		\ signs = {
+			\ add = { text = '+' },
+			\ change = { text = '~' },
+			\ delete = { text = '_' },
+			\ topdelete = { text = '‾' },
+			\ changedelete = { text = '~' },
+		\}
+	\})
+endif
