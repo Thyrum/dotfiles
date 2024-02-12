@@ -1,7 +1,7 @@
 let mapleader=" "
 
 " VISUALS
-set relativenumber number
+"set relativenumber number
 set listchars=tab:┆\  list
 set showbreak=↪\  breakindent wrap
 set colorcolumn=81,101
@@ -69,7 +69,9 @@ inoremap . .<C-g>u
 inoremap ! !<C-g>u
 inoremap ? ?<C-g>u
 
+
 " PLUGINS
+
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
   silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
@@ -107,9 +109,9 @@ nnoremap <leader>gs :G<cr>
 let g:vimtex_view_method = 'zathura'
 let g:vimtex_compiler_method = 'latexmk'
 let g:vimtex_compiler_latexmk = {
-	\ 'aux_dir' : 'build',
-	\ 'out_dir' : 'build',
-	\ 'build_dir' : 'build'
+	\ 'aux_dir' : './build',
+	\ 'out_dir' : './build',
+	\ 'build_dir' : './build'
 \}
 
 " neoformat
