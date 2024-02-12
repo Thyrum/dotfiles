@@ -105,7 +105,7 @@ endif
 let g:togglecursor_leave = "line"
 
 " fzf.vim
-nnoremap <leader>rg :Rg<cr>
+nnoremap <leader>rg :RG<cr>
 nnoremap <leader>sf :Files<cr>
 nnoremap <leader>sg :GFiles<cr>
 nnoremap <leader>sg :Files<cr>
