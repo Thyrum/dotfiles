@@ -38,7 +38,7 @@ filetype plugin indent on
 " INTERACTIVE
 set mouse=a
 set splitbelow splitright
-set scrolloff=3
+set scrolloff=2
 set hlsearch incsearch
 set noerrorbells
 set clipboard=unnamedplus
