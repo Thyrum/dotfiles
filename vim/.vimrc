@@ -85,7 +85,11 @@ call plug#begin()
 Plug 'tpope/vim-surround'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+Plug 'shumphrey/fugitive-gitlab.vim'
+
 Plug 'jszakmeister/vim-togglecursor'
 Plug 'lervag/vimtex'
 Plug 'sbdchd/neoformat'
@@ -114,6 +118,9 @@ nnoremap <leader>sg :Files<cr>
 nnoremap <leader>gj :diffget //3<cr>
 nnoremap <leader>gf :diffget //2<cr>
 nnoremap <leader>gs :G<cr>
+nnoremap <leader>gb :GBrowse<cr>
+set statusline=%<%f\ %h%m%r%{FugitiveStatusline()}%=%-14.(%l,%c%V%)\ %P
+let g:fugitive_gitlab_domains = ['https://gitlab.issc.leidenuniv.nl', 'https://git.liacs.nl']
 
 " vimtex
 let g:vimtex_view_method = 'zathura'
