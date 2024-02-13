@@ -102,6 +102,15 @@ endif
 
 call plug#end()
 
+function! PlugLoaded(name)
+	return (
+		\ exists('g:plugs') &&
+		\ has_key(g:plugs, a:name) &&
+		\ isdirectory(g:plugs[a:name].dir) &&
+		\ stridx(&rtp, g:plugs[a:name].dir[:-2]) >= 0
+	\ )
+endfunction
+
 " togglecursor
 if match($TERM, "color") >= 0
 	let g:togglecursor_force = 'xterm'
@@ -135,7 +144,7 @@ let g:vimtex_compiler_latexmk = {
 nnoremap <leader>f :Neoformat<cr>
 
 " gitsigns
-if has('nvim')
+if has('nvim') && PlugLoaded('gitsigns.nvim')
 	lua require('gitsigns').setup({
 		\ signs = {
 			\ add = { text = '+' },
