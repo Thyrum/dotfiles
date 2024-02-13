@@ -83,8 +83,13 @@ endif
 
 call plug#begin()
 Plug 'tpope/vim-surround'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+if has('nvim-0.9.0')
+	Plug 'nvim-lua/plenary.nvim'
+	Plug 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x' }
+else
+	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+	Plug 'junegunn/fzf.vim'
+endif
 
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
@@ -117,11 +122,16 @@ if match($TERM, "color") >= 0
 endif
 let g:togglecursor_leave = "line"
 
-" fzf.vim
-nnoremap <leader>rg :RG<cr>
-nnoremap <leader>sf :Files<cr>
-nnoremap <leader>sg :GFiles<cr>
-nnoremap <leader>sg :Files<cr>
+" fzf.vim / telescope
+if PlugLoaded('fzf.vim')
+	nnoremap <leader>rg :RG<cr>
+	nnoremap <leader>sf :Files<cr>
+	nnoremap <leader>sg :GFiles<cr>
+else
+	nnoremap <leader>rg <cmd>Telescope live_grep<cr>
+	nnoremap <leader>sf <cmd>Telescope find_files no_ignore=true<cr>
+	nnoremap <leader>sg <cmd>Telescope find_files<cr>
+endif
 
 " vim-fugitive
 nnoremap <leader>gj :diffget //3<cr>
