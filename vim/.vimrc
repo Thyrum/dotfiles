@@ -99,7 +99,7 @@ Plug 'jszakmeister/vim-togglecursor'
 Plug 'lervag/vimtex'
 Plug 'sbdchd/neoformat'
 
-if has('nvim')
+if has('nvim-0.8.0')
 	Plug 'lewis6991/gitsigns.nvim'
 else
 	Plug 'airblade/vim-gitgutter'
@@ -154,7 +154,7 @@ let g:vimtex_compiler_latexmk = {
 nnoremap <leader>f :Neoformat<cr>
 
 " gitsigns
-if has('nvim') && PlugLoaded('gitsigns.nvim')
+if PlugLoaded('gitsigns.nvim')
 	lua require('gitsigns').setup({
 		\ signs = {
 			\ add = { text = '+' },
