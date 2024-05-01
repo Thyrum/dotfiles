@@ -1,11 +1,29 @@
-local conds = require("luasnip.extras.expand_conditions")
+local autosnippets={}
 
-local beg = parse({trig = "beg", wordTrig=true}, "\\begin{$1}\n\t$0\n\\end{$1}")
-local bal = parse({trig = "bal", wordTrig=true }, "\\begin{align}\n\t$0\n\\end{align}")
-beg.condition = conds.line_begin
-bal.condition = conds.line_begin
+local tex={}
+tex.in_mathzone=function() return vim.fn['vimtex#syntax#in_mathzone']() == 1 end
+tex.in_text=function() return not tex.in_mathzone() end
+
+table.insert(autosnippets,parse(
+	{trig="beg", wordTrig=true, condition=conds.line_begin},
+	"\\begin{$1}\n\t$0\n\\end{$1}"
+))
+table.insert(autosnippets,parse(
+	{trig="bal", wordTrig=true, condition=conds.line_begin+tex.in_text},
+	"\\begin{align}\n\t$0\n\\end{align}"
+))
+table.insert(autosnippets,parse(
+	{trig="__", wordTrig=false, condition=tex.in_mathzone},
+	"_{$1}"
+))
+table.insert(autosnippets,parse(
+	{trig="**", wordTrig=false, condition=tex.in_mathzone},
+	"^{$1}"
+))
+table.insert(autosnippets,parse(
+	{trig="...", wordTrig=false, condition=tex.in_mathzone},
+	"\\dots"
+))
 
 return {
-},{
-	beg, bal
-}
+},autosnippets
